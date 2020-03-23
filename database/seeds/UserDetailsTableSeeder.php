@@ -91,6 +91,7 @@ class UserDetailsTableSeeder extends Seeder
         UserDetails::create(['niss'=>'0','firstname'=>'Teuku','lastname'=>'Mizansyah','alias'=>'Mizan','gender'=>'M','nationality'=>'Indonesia']);
         UserDetails::create(['niss'=>'100001623','firstname'=>'Vitorino Freitas','lastname'=>'da Costa','alias'=>'Vitorino','gender'=>'M','nationality'=>'Timor Leste']);
         UserDetails::create(['niss'=>'100003770','firstname'=>'Vitorino','lastname'=>'Gomes Manuel','alias'=>'Vitor','gender'=>'M','nationality'=>'Timor Leste']);
+        UserDetails::create(['niss'=>'0','firstname'=>'System','lastname'=>'Administrator','alias'=>'Admin','gender'=>'M','nationality'=>'--']);
 
     }
 }

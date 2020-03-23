@@ -21,12 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'can:manage-user']], function(){
-    Route::get('/admin/users/new','Admin\UserController@new')->name('admin.users.new');
-    Route::resource('/admin/users','Admin\UserController', array('names' => 'admin.users'));
-    Route::resource('/admin/roles','Admin\RoleController', array('names' => 'admin.roles'));
-    Route::resource('/admin/teams','Admin\TeamController', array('names' => 'admin.teams'));
-    Route::resource('/admin/positions','Admin\PositionController', array('names' => 'admin.positions'));
-    Route::resource('/admin/accounts','Admin\UserAccountController', array('names' => 'admin.account'));
-    Route::resource('/admin/employments','Admin\EmploymentController', array('names' => 'admin.employment'));
-    Route::resource('/admin/departments','Admin\DepartmentController', array('names' => 'admin.departments'));
+    Route::get('/admin/users/new','Admin\Basic\UserController@new')->name('admin.users.new');
+    Route::resource('/admin/users','Admin\Basic\UserController', array('names' => 'admin.users'));
+    Route::resource('/admin/roles','Admin\Basic\RoleController', array('names' => 'admin.roles'));
+    Route::resource('/admin/teams','Admin\Basic\TeamController', array('names' => 'admin.teams'));
+    Route::resource('/admin/positions','Admin\Basic\PositionController', array('names' => 'admin.positions'));
+    Route::resource('/admin/accounts','Admin\Basic\UserAccountController', array('names' => 'admin.account'));
+    Route::resource('/admin/employments','Admin\Basic\EmploymentController', array('names' => 'admin.employment'));
+    Route::resource('/admin/departments','Admin\Basic\DepartmentController', array('names' => 'admin.departments'));
 });

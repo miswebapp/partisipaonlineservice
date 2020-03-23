@@ -11,8 +11,8 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Team Code</label>
                             <div class="col-md-6">
-                                <input id="niss" type="text" class="form-control @error('niss') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="niss" autofocus>
-                                @error('niss')
+                                <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="niss" autofocus>
+                                @error('code')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -33,12 +33,12 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">Description</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Details</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description">
+                                <textarea class="form-control @error('details') is-invalid @enderror" name="details">
                                 </textarea>
-                                @error('description')
+                                @error('details')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

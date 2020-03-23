@@ -23,6 +23,7 @@
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Total Members</th>
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
@@ -30,7 +31,8 @@
                         @foreach($roles as $role)
                             <tr>
                             <td>{{$role->name}}</td>
-                            <td>{{$role->description}}</td>
+                            <td>{{$role->details}}</td>
+                            <td>{{$role->account()->count()}}</td>
                             <td>
                                 @can('edit-user')
                                 <a href=" {{ route('admin.roles.edit', $role->id)}}"><button type="button" class="btn btn-outline-primary btn-sm">Edit</button></a>

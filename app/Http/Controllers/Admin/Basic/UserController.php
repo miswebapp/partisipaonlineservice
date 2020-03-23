@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Basic;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\UserDetails;
+use App\Team;
 use App\Position;
+use App\Department;
+use App\Role;
 
-class PositionController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +20,8 @@ class PositionController extends Controller
      */
     public function index()
     {
-        $positions = Position::all();
-        return view('admin.positions.index',compact('positions'));
+        $users = UserDetails::all();
+        return view('admin.users.index',compact('users'));
     }
 
     /**
@@ -37,7 +42,7 @@ class PositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //
     }
 
     /**
@@ -48,7 +53,11 @@ class PositionController extends Controller
      */
     public function show($id)
     {
-        //
+        $positions = Position::all();
+        $departments = Department::all();
+        $user = UserDetails::with('account','employment','department','position')->where('id',$id)->get();
+        // dd($user);
+        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments]);
     }
 
     /**

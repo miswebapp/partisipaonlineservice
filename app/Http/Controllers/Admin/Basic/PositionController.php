@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Basic;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Department;
+use App\Http\Controllers\Controller;
+use App\Position;
 
-class DepartmentController extends Controller
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
-        return view('admin.departments.index',compact('departments'));
+        $positions = Position::all();
+        return view('admin.positions.index',compact('positions'));
     }
 
     /**

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Basic;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Role;
-class RoleController extends Controller
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Employment;
+
+class EmploymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +16,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::with('users')->get();
-        return view('admin.roles.index', compact('roles'));
+        //
     }
 
     /**
@@ -36,7 +37,19 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $user_employment = Employment::create([
+            'employee_id' => str_replace('-','',$request['employee_startdate']).Str::limit(Str::upper($request['employee_email']),3,false),
+            'user_id' => $request['user_id'],
+            'position_id' => $request['employee_position'],
+            'department_id' => $request['employee_department'],
+            'employee_email' => $request['employee_email'],
+            'employee_telephone' => $request['employee_telephone'],
+            'employee_startdate' => $request['employee_startdate'],
+            'employee_enddate' => $request['employee_enddate']
+        ]);
+
+        return redirect()->route('admin.users.show',$request['user_id'])->with('status_employment','User employment details added successfully');
     }
 
     /**

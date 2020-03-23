@@ -39,4 +39,8 @@ class UserDetails extends Model
     {
         return $this->belongsToMany(Department::class,'employments','user_id','department_id');
     }
+    public function reports()
+    {
+        return $this->hasMany(Report::class,'user_id');
+    }
 }

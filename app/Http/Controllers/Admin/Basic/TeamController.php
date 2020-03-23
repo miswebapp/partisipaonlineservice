@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Basic;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Employment;
-
-class EmploymentController extends Controller
+use App\Http\Controllers\Controller;
+use App\Team;
+class TeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,8 @@ class EmploymentController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::all();
+        return view('admin.teams.index', compact('teams'));
     }
 
     /**
@@ -26,7 +25,7 @@ class EmploymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.teams.create');
     }
 
     /**
@@ -37,18 +36,15 @@ class EmploymentController extends Controller
      */
     public function store(Request $request)
     {
-        $user_employment = Employment::create([
-            'employee_id' => Str::replaceFirst('-','',$request['startdate']).Str::limit($request['employee_email'],3),
-            'user_id' => $request['user_id'],
-            'position_id' => $request['employee_position'],
-            'department_id' => $request['employee_department'],
-            'employee_email' => $request['employee_email'],
-            'employee_telephone' => $request['employee_telephone'],
-            'employee_startdate' => $request['employee_startdate'],
-            'employee_enddate' => $request['employee_enddate']
-        ]);
+        Team::create(
+            [
+                'code'=>$request['code'],
+                'name'=>$request['name'],
+                'details'=>$request['details'],
+            ]
+        );
 
-        return redirect()->route('admin.users.show',$request['user_id'])->with('status_employment','User employment details added successfully');
+        return redirect()->route('admin.teams.index')->with('status','New team added successfully');
     }
 
     /**
@@ -82,7 +78,13 @@ class EmploymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $team = Team::find($id);
+        $team->code = $request->code;
+        $team->name = $request->name;
+        $team->details = $request->details;
+        $team->update();
+
+        return redirect()->route('admin.teams.index')->with('status','Team details updated successfully');
     }
 
     /**

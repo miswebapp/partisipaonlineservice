@@ -99,7 +99,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit User Login Details</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit User Login Account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -151,7 +151,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Login</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Login Account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -233,7 +233,115 @@
                             <tr><th>Start Date</th><td>{{$user->first()->employment->employee_startdate}}</td></tr>
                             <tr><th>End Date</th><td>{{$user->first()->employment->employee_enddate}}</td></tr>
                         </table>
-                        <a href="#"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <!-- Modal -->
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserEmploymentModal">
+                            Edit
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addUserEmploymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Employment Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('admin.employment.store') }}">
+                                        @csrf
+                                        <input type="hidden" name="user_id" value={{$user->first()->id}}>
+                                        <div class="form-group row">
+                                            <label for="employee_email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Addrress') }}</label>
+                                            <div class="col-md-6">
+                                                <input id="employee_email" type="text" class="form-control @error('employee_email') is-invalid @enderror" name="employee_email" value="{{$user->first()->employment->employee_email}}" required autocomplete="employee_email" autofocus>
+                                                @error('employee_email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="employee_telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telephone') }}</label>
+                                            <div class="col-md-6">
+                                                <input id="employee_telephone" type="text" class="form-control @error('employee_telephone') is-invalid @enderror" name="employee_telephone" value="{{$user->first()->employment->employee_telephone}}" required autocomplete="employee_telephone">
+                                                @error('employee_telephone')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="employee_position" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" id="employee_position" name="employee_position" >
+                                                    @foreach($positions as $position)
+                                                        <option value="{{$position->id}}">{{$position->code}} - {{$position->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('employee_position')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="employee_department" class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" id="employee_department" name="employee_department" >
+                                                    @foreach($departments as $department)
+                                                        <option value="{{$department->id}}">{{$department->code}} - {{$department->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('employee_department')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        
+                                        <div class="form-group row">
+                                            <label for="employee_startdate" class="col-md-4 col-form-label text-md-right">{{ __('Start Date') }}</label>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='employee_startdate'>
+                                                        <input type='date' class="form-control" name="employee_startdate" value="{{$user->first()->employment->employee_startdate}}"/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="employee_enddate" class="col-md-4 col-form-label text-md-right">{{ __('End Date') }}</label>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='employee_enddate'>
+                                                        <input type='date' class="form-control" name="employee_enddate" value="{{$user->first()->employment->employee_enddate}}"/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     @else
                         <!-- Modal -->
                         <!-- Button trigger modal -->
@@ -245,7 +353,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Login</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Employment Details</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

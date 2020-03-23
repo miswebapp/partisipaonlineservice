@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'POS') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <h2><a class="navbar-brand" href="{{ url('/') }}">
-                    PARTISIPA Online System
+                    PARTISIPA Online Service
                 </a>
                 </h2>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +41,36 @@
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else 
                             @can('manage-user')
-                            <li><a href="{{ route('admin.users.index') }}"><button type="button" class="btn btn-link">Users</button></a></li>
-                            <li><a href="{{ route('admin.roles.index') }}"><button type="button" class="btn btn-link">Roles</button></a></li>
-                            <li><a href="{{ route('admin.teams.index') }}"><button type="button" class="btn btn-link">Teams</button></a></li>
-                            <li><a href="{{ route('admin.positions.index') }}"><button type="button" class="btn btn-link">Positions</button></a></li>
-                            <li><a href="{{ route('admin.departments.index') }}"><button type="button" class="btn btn-link">Departments</button></a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  System
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
+                                    <a class="dropdown-item" href="{{ route('admin.account.index') }}">Account</a>
+                                    <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
+                                    <a class="dropdown-item" href="{{ route('admin.teams.index') }}">Teams</a>
+                                    <a class="dropdown-item" href="{{ route('admin.positions.index') }}">Positions</a>
+                                    <a class="dropdown-item" href="{{ route('admin.departments.index') }}">Departments</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#">...</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  FST Reporting
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Report Users</a>
+                                    <a class="dropdown-item" href="#">FST Team</a>
+                                    <a class="dropdown-item" href="#">Activities</a>
+                                    <a class="dropdown-item" href="#">Projects</a>
+                                    <a class="dropdown-item" href="#">Locations</a>
+                                  <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="#">...</a>
+                                </div>
+                            </li>
+                            
                             {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Product</a></li> --}}
                             @endcan
                             <li class="nav-item dropdown">
