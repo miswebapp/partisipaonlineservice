@@ -9,6 +9,7 @@ use App\Team;
 use App\Position;
 use App\Department;
 use App\Role;
+use App\SystemModule;
 
 
 class UserController extends Controller
@@ -53,11 +54,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $modules = SystemModule::all();
         $positions = Position::all();
         $departments = Department::all();
-        $user = UserDetails::with('account','employment','department','position')->where('id',$id)->get();
+        $user = UserDetails::with('account','employment','department','position','modules')->where('id',$id)->get();
         // dd($user);
-        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments]);
+        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'modules'=>$modules]);
     }
 
     /**

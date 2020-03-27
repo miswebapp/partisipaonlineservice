@@ -243,7 +243,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Employment Details</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit User Employment Details</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -458,20 +458,22 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Team Details</div>
+            <div class="card-header">User Application Module</div>
                 <div class="card-body">
-                    @if (session('status_team'))
+                    @if (session('status_user_module'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status_team') }}
+                            {{ session('status_user_module') }}
                         </div>
                     @endif
-                    @if($user->first()->team()->exists())
+                    
+                    @if($user->first()->modules()->exists())
                         <table class="table table-borderless table-sm">
-                            <tr><th>Team Code</th><td>{{$user->position->name}}</td></tr>
-                            <tr><th>Team</th><td>{{$user->position->name}}</td></tr>
-                            <tr><th>Description</th><td>LES</td></tr>
+                            <tr><th>Modules</th><th>Description</th><th>User roles</th></tr>
+                            @foreach($user->first()->modules as $usermodule)
+                                <tr><td>{{$usermodule->name}}</td><td>{{$usermodule->description}}</td><td>-</td></tr>
+                            @endforeach
                         </table>
-                        <a href="#"><button class="btn btn-primary btn-sm">Edit</button></a>
+                        <a href="#"><button class="btn btn-primary">Edit</button></a>
                     @else
                         <!-- Modal -->
                         <!-- Button trigger modal -->
@@ -483,54 +485,31 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Login</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Assign User Application</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.teams.store') }}">
+                                    <form method="POST" action="{{ route('admin.usermodules.store') }}">
                                         @csrf
                                         <div class="form-group row">
                                             <input type="hidden" name="user_id" value={{$user->first()->id}}>
-                                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                                            <div class="col-md-6">
-                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->first()->fullnames }}" required autocomplete="name" autofocus>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Application Module') }}</label>
                                             <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                @foreach( $modules as $module )
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="modules[]" value="{{$module->id}}" 
+                                                    @if($user->first()->modules->pluck('id')->contains($module->id)) checked 
+                                                    @endif>
+                                                    <label>{{$module->name}}</label>
+                                                </div>
+                                                @endforeach 
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-                                            <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-                                                @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-                                            <div class="col-md-6">
-                                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                            </div>
-                                        </div>
+                                        
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </form>

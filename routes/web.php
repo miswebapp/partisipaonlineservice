@@ -29,4 +29,6 @@ Route::group(['middleware' => ['auth', 'can:manage-user']], function(){
     Route::resource('/admin/accounts','Admin\Basic\UserAccountController', array('names' => 'admin.account'));
     Route::resource('/admin/employments','Admin\Basic\EmploymentController', array('names' => 'admin.employment'));
     Route::resource('/admin/departments','Admin\Basic\DepartmentController', array('names' => 'admin.departments'));
+    Route::resource('/admin/modules','Admin\Basic\ModulesController', array('names' => 'admin.modules'));
+    Route::resource('/admin/usermodules','Admin\Basic\UserModuleController', array('names' => 'admin.usermodules'));
 });

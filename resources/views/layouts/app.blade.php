@@ -49,6 +49,7 @@
                                     <a class="dropdown-item" href="{{ route('admin.users.index') }}">Users</a>
                                     <a class="dropdown-item" href="{{ route('admin.account.index') }}">Account</a>
                                     <a class="dropdown-item" href="{{ route('admin.roles.index') }}">Roles</a>
+                                    <a class="dropdown-item" href="{{ route('admin.modules.index') }}">Modules</a>
                                     <a class="dropdown-item" href="{{ route('admin.teams.index') }}">Teams</a>
                                     <a class="dropdown-item" href="{{ route('admin.positions.index') }}">Positions</a>
                                     <a class="dropdown-item" href="{{ route('admin.departments.index') }}">Departments</a>

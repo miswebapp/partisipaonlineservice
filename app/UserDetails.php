@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Frs\SystemModule;
 class UserDetails extends Model
 {
     protected $fillable = [
@@ -42,5 +42,10 @@ class UserDetails extends Model
     public function reports()
     {
         return $this->hasMany(Report::class,'user_id');
+    }
+
+    public function modules()
+    {
+        return $this->belongsToMany(SystemModule::class,'user_modules','user_id','module_id');
     }
 }

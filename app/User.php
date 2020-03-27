@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class,'user_role','account_id','role_id');
     }
 
+    public function modules()
+    {
+        return $this->belongsToMany(SystemModule::class,'user_modules','user_id','module_id');
+    }
+
     public function hasRole($role)
     {   
         return $this->roles()->where('name',$role)->first() ? true : false;
