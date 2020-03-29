@@ -23,7 +23,7 @@ class CreateUserDetailsTable extends Migration
             $table->date('dob')->nullable();
             $table->string('email')->nullable();
             $table->integer('telephone')->nullable();
-            $table->string('nationality')->nullable();
+            $table->integer('nationality')->unsigned()->nullable();
             $table->timestamps();
         });
     }

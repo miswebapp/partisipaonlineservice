@@ -10,6 +10,8 @@ use App\Position;
 use App\Department;
 use App\Role;
 use App\SystemModule;
+use App\Gender;
+use App\Nationality;
 
 
 class UserController extends Controller
@@ -21,8 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $genders = Gender::all();
+        $nationalities = Nationality::all();
         $users = UserDetails::all();
-        return view('admin.users.index',compact('users'));
+        return view('admin.users.index',compact('users' , 'genders','nationalities'));
     }
 
     /**
@@ -43,7 +47,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-       //
+       $user = new UserDetails();
+       $user->niss = $request->niss;
+       $user->firstname = $request->firstname;
+       $user->lastname = $request->lastname;
+       $user->alias = $request->alias;
+       $user->gender = $request->gender;
+       $user->dob = $request->dob;
+       $user->email = $request->email;
+       $user->telephone = $request->telephone;
+       $user->nationality = $request->nationality;
+       $user->save();
+
+       return redirect()->route('admin.users.index')->with('status','New personnel details is added successfully');
     }
 
     /**
@@ -54,12 +70,14 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        $genders = Gender::all();
+        $nationalities = Nationality::all();
         $modules = SystemModule::all();
         $positions = Position::all();
         $departments = Department::all();
         $user = UserDetails::with('account','employment','department','position','modules')->where('id',$id)->get();
         // dd($user);
-        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'modules'=>$modules]);
+        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'modules'=>$modules,'genders'=>$genders,'nationalities'=>$nationalities]);
     }
 
     /**
@@ -82,7 +100,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = UserDetails::where('id',$id);
+        $user->niss = $request->niss;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->alias = $request->alias;
+        $user->gender = $request->gender;
+        $user->email = $request->email;
+        $user->telephone = $request->telephone;
+        $user->nationality = $request->nationality;
+        $user->update();
     }
 
     /**

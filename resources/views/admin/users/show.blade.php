@@ -15,15 +15,24 @@
                             <tr><th class="col-form-label">Full Name</th><td>{{$user->first()->fullnames}}</td></tr>
                             <tr><th class="col-form-label">First Name</th><td>{{$user->first()->firstname}}</td></tr>
                             <tr><th class="col-form-label">Last Name</th><td>{{$user->first()->lastname}}</td></tr>
-                            <tr><th>Email</th><td>{{$user->first()->email}}</td></tr>
-                            <tr><th>Telephone</th><td>{{$user->first()->telephone}}</td></tr>
-                            <tr><th>Gender</th><td>{{$user->first()->gender}}</td></tr>
-                            <tr><th>Nationality</th><td>{{$user->first()->nationality}}</td></tr>
-                            {{-- <tr><th>Roles</th><td> --}}
-                                {{-- @foreach( $user->first()->roles as $role ) 
-                                {{$role->name."\n" }} 
-                                @endforeach --}}
-                            {{-- </td></tr> --}}
+                            <tr><th>Alias</th><td>{{$user->first()->alias}}</td></tr>
+                            <tr><th>Date of Birth</th><td>{{$user->first()->dob}}</td></tr>
+                            <tr><th>Personal Email</th><td>{{$user->first()->email}}</td></tr>
+                            <tr><th>Personal Telephone</th><td>{{$user->first()->telephone}}</td></tr>
+                            <tr><th>Gender</th>
+                                <td>
+                                    @foreach($genders as $gender)
+                                        {{$user->first()->gender == $gender->abbr ? $gender->name : ''}}
+                                    @endforeach()
+                                </td>
+                            </tr>
+                            <tr><th>Nationality</th>
+                                <td>
+                                    @foreach($nationalities as $nationality)
+                                        {{$user->first()->nationality == $nationality->id ? $nationality->name : ''}}
+                                    @endforeach()
+                                </td>
+                            </tr>
                     </table>
                     
                     <!-- Modal -->
@@ -42,25 +51,127 @@
                             </button>
                             </div>
                             <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                    <label>Full Name</label>
-                                    <input type="text" name="fullname" class="form-control" value="{{$user->first()->fullnames}}">
-                                    <label>First Name</label>
-                                    <input type="text" name="firstname" class="form-control" value="{{$user->first()->firstname}}">
-                                    <label>Last Name</label>
-                                    <input type="text" name="lastname" class="form-control" value="{{$user->first()->lastname}}">
-                                    <label>Email</label>
-                                    <input type="email" name="email" class="form-control" value="{{$user->first()->email}}">
-                                    <label>Telephone</label>
-                                    <input type="text" name="firstname" class="form-control" value="{{$user->first()->telephone}}">
-                                    <label>Gender</label>
-                                    <select class="form-control">
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-                                    </select>
-                                    <label>Nationality</label>
-                                    <input type="text" name="nationality" class="form-control" value="{{$user->first()->nationality}}">
+                                <form method="POST" action="{{ route('admin.users.update',$user->first()->id)}}">
+                                    @csrf
+                                    <div class="row">
+                                        <label for="niss" class="col-md-4 col-form-label text-md-right">{{ __('NISS #') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='niss'>
+                                                    <input type='text' class="form-control" name="niss" value="{{$user->first()->niss}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='firstname'>
+                                                    <input type='text' class="form-control" name="firstname" value="{{$user->first()->firstname}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='lastname'>
+                                                    <input type='text' class="form-control" name="lastname" value="{{$user->first()->lastname}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-user-o"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="alias" class="col-md-4 col-form-label text-md-right">{{ __('Alias') }}</label>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class='input-group' id='alias'>
+                                                    <input type='text' class="form-control" name="alias" value="{{$user->first()->alias}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='dob'>
+                                                    <select name="gender" class="custom-select">
+                                                        @foreach($genders as $gender)
+                                                            <option value="{{$gender->abbr}}" {{$user->first()->gender == $gender->abbr ? 'selected' : ''}}>{{$gender->name}}</option>
+                                                        @endforeach
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='dob'>
+                                                <input type='date' class="form-control" name="dob" value="{{$user->first()->dob}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Personal E-Mail') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='email'>
+                                                    <input type='text' class="form-control" name="email" value="{{$user->first()->email}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-envelope-o"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Personal Mobile') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='telephone'>
+                                                    <input type='text' class="form-control" name="telephone" value="{{$user->first()->telephone}}"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="dob" class="col-md-4 col-form-label text-md-right">{{ __('Nationality') }}</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class='input-group' id='dob'>
+                                                    <select name="gender" class="custom-select">
+                                                        @foreach($nationalities as $nationality)
+                                                            <option value="{{$nationality->id}}" {{$user->first()->nationality == $nationality->id ? 'selected' : ''}}>{{$nationality->name}}</option>
+                                                        @endforeach
+                                                    </select> 
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
