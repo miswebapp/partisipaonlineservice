@@ -62,41 +62,50 @@
                                             <div class="modal-body">
                                                 <form method="POST" action="{{ route('admin.account.update',$account->id) }}">
                                                     {{method_field('PUT')}}
+                                                    <input type="hidden" name="user_id" value={{$account->id}}>
                                                     @csrf
-                                                    <div class="form-group row">
-                                                        <input type="hidden" name="user_id" value={{$account->id}}>
+                                                    <div class="row">
                                                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                                                         <div class="col-md-6">
-                                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$account->name}}" required autocomplete="name" autofocus>
-                                                            @error('name')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                                                        <div class="col-md-6">
-                                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$account->email}}" required autocomplete="email">
-                                                            @error('email')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
-                                                        <div class="col-md-6">
-                                                            @foreach( $roles as $role )
-                                                            <div class="form-check">
-                                                                <input type="checkbox" name="roles[]" value="{{$role->id}}" 
-                                                                @if($account->roles->pluck('id')->contains($role->id)) checked 
-                                                                @endif>
-                                                                <label>{{$role->name}}</label>
+                                                            <div class="form-group">
+                                                                <div class='input-group' id='name'>
+                                                                    <input type='text' class="form-control" name="name" value={{$account->name}} />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            @endforeach 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <div class='input-group' id='email'>
+                                                                    <input type='email' class="form-control" name="email" value={{$account->email}}  />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <label for="roles" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <div class='input-group' id='roles'>
+                                                                    @foreach( $roles as $role )
+                                                                    <div class="form-check">
+                                                                        <input type="checkbox" name="roles[]" value="{{$role->id}}" 
+                                                                        @if($account->roles->pluck('id')->contains($role->id)) checked 
+                                                                        @endif>
+                                                                        <label>{{$role->name}}</label>
+                                                                    </div>
+                                                                    @endforeach 
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

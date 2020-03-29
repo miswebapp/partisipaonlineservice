@@ -83,7 +83,18 @@ class EmploymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $employment_details = Employment::where('user_id',$request->user_id)->first();
+        $employment_details->position_id = $request->employee_position;
+        $employment_details->department_id = $request->employee_department;
+        $employment_details->employee_email = $request->employee_email;
+        $employment_details->employee_telephone = $request->employee_telephone;
+        $employment_details->employee_startdate = $request->employee_startdate;
+        $employment_details->employee_enddate = $request->employee_enddate;
+
+        $employment_details->update();
+
+        return redirect()->route('admin.users.show',$id)->with('status_profile','User profile updated successfully');
     }
 
     /**

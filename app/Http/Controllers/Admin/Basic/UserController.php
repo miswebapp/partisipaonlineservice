@@ -100,7 +100,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = UserDetails::where('id',$id);
+        $user = UserDetails::where('id',$id)->first();
         $user->niss = $request->niss;
         $user->firstname = $request->firstname;
         $user->lastname = $request->lastname;
@@ -110,6 +110,8 @@ class UserController extends Controller
         $user->telephone = $request->telephone;
         $user->nationality = $request->nationality;
         $user->update();
+
+        return redirect()->route('admin.users.show',$id)->with('status_employment','User employment details updated successfully');
     }
 
     /**
