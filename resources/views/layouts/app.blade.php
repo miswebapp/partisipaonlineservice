@@ -59,14 +59,10 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  FST Reporting
+                                  Modules
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Report Users</a>
-                                    <a class="dropdown-item" href="#">FST Team</a>
-                                    <a class="dropdown-item" href="#">Activities</a>
-                                    <a class="dropdown-item" href="#">Projects</a>
-                                    <a class="dropdown-item" href="#">Locations</a>
+                                    <a class="dropdown-item" href="#">Field Reporting System</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">...</a>
                                 </div>

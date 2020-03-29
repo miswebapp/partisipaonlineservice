@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 @push('styles')
     <link href="{{ asset('css/frs.main.css') }}" rel="stylesheet">
