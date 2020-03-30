@@ -20,6 +20,7 @@ class CreateSysModulesTable extends Migration
             $table->string('controller_namespace');
             $table->string('model_namespace');
             $table->string('view_namespace');
+            $table->string('route_name');
             $table->string('description');
             $table->timestamps();
         });

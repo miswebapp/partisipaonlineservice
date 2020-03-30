@@ -43,6 +43,7 @@ class ModulesController extends Controller
             'controller_namespace' => $request['controller_namespace'],
             'model_namespace' => $request['model_namespace'],
             'view_namespace' => $request['view_namespace'],
+            'route_name' => $request['route_name'],
             'description' => $request['description']
         ]);
 
@@ -80,7 +81,18 @@ class ModulesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $module = SystemModule::where('id',$id)->first();
+        $module->alias = $request['alias'];
+        $module->name = $request['name'];
+        $module->controller_namespace = $request['controller_namespace'];
+        $module->model_namespace = $request['model_namespace'];
+        $module->view_namespace = $request['view_namespace'];
+        $module->route_name = $request['route_name'];
+        $module->description = $request['description'];
+
+        $module->update();
+
+        return redirect()->route('admin.modules.index')->with('status','Application module details updated successfully');
     }
 
     /**

@@ -4,7 +4,7 @@
     <div class="row justify-content-center mb-4">
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Profile details</div>
+            <div class="card-header">Personnel Profile details</div>
                 <div class="card-body">
                     @if (session('status_profile'))
                         <div class="alert alert-success" role="alert">
@@ -38,14 +38,14 @@
                     <!-- Modal -->
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserDetailsModal">
-                        Edit
+                        Edit Personnel Profile
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="editUserDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">User Details</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Personnel Profile Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -190,7 +190,7 @@
 
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Login Account</div>
+            <div class="card-header">Personnel Login Account</div>
                 <div class="card-body">
                     @if (session('status_account'))
                         <div class="alert alert-success" role="alert">
@@ -205,14 +205,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserLoginAccountModal">
-                            Edit
+                            Edit Login Account
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="editUserLoginAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit User Login Account</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Personnel Login Account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -263,14 +263,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserLoginAccountModal">
-                            Add
+                            Setup Login Account
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="addUserLoginAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Login Account</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add Personnel Login Account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -334,7 +334,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">Employment Details</div>
+            <div class="card-header">Personnel Employment Details</div>
                 <div class="card-body">
                     @if (session('status_employment'))
                         <div class="alert alert-success" role="alert">
@@ -354,14 +354,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserEmploymentModal">
-                            Edit
+                            Edit Employment
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="addUserEmploymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit User Employment Details</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Personnel Employment Details</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -465,14 +465,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserEmploymentModal">
-                            Add
+                            Setup Employment
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="addUserEmploymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Add User Employment Details</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add Personnel Employment Details</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -578,7 +578,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-            <div class="card-header">User Application Module</div>
+            <div class="card-header">Personnel Application Module</div>
                 <div class="card-body">
                     @if (session('status_user_module'))
                         <div class="alert alert-success" role="alert">
@@ -596,14 +596,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModule">
-                            Edit
+                            Edit Module Assignment
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="editUserModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Assign User Application</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's Application Module</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -640,14 +640,14 @@
                         <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserTeamModal">
-                            Add
+                            Setup Module Assignment
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="addUserTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Assign User Application</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's Application Module</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

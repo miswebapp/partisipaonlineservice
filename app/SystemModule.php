@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SystemModule extends Model
 {
     protected $table="sys_modules";
-    protected $fillable=['name','alias','controller_namespace','model_namespace','view_namespace','description'];
+    protected $fillable=['name','alias','controller_namespace','model_namespace','view_namespace','route_name','description'];
 
     public function users()
     {
