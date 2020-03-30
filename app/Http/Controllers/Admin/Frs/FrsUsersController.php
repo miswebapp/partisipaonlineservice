@@ -19,9 +19,9 @@ class FrsUsersController extends Controller
     {
         $allusers = UserDetails::all();
         $maintitle="Reporting User Management";
-        $frsusers = UserDetails::with('modules')->where('module_id','==',1)->get();
-        dd($frsusers);
-        return view('admin.frs.users', compact('frsusers','allusers'))->with('maintitle',$maintitle);
+        $frsusers = SystemModule::with('member')->where('alias','FRS')->first();
+        // dd($frsusers);
+        return view('admin.frs.users', compact('frsusers'))->with('maintitle',$maintitle);
     }
 
     /**

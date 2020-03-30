@@ -586,10 +586,10 @@
                         </div>
                     @endif
                     
-                    @if($user->first()->modules()->exists())
+                    @if($user->first()->sysmodules()->exists())
                         <table class="table table-borderless table-sm">
-                            <tr><th>Modules</th><th>User roles</th></tr>
-                            @foreach($user->first()->modules as $usermodule)
+                            <tr><th>System Modules</th><th>User roles</th></tr>
+                            @foreach($user->first()->sysmodules as $usermodule)
                                 <tr><td>{{$usermodule->name}}</td><td>-</td></tr>
                             @endforeach
                         </table>
@@ -603,7 +603,7 @@
                             <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's Application Module</h5>
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's System Module</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -615,12 +615,12 @@
                                             <input type="hidden" name="user_id" value={{$user->first()->id}}>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Application Module') }}</label>
+                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('System Module') }}</label>
                                             <div class="col-md-6">
-                                                @foreach( $modules as $module )
+                                                @foreach( $sysmodules as $module )
                                                 <div class="form-check">
                                                     <input type="checkbox" name="modules[]" value="{{$module->id}}" 
-                                                    @if($user->first()->modules->pluck('id')->contains($module->id)) checked 
+                                                    @if($user->first()->sysmodules->pluck('id')->contains($module->id)) checked 
                                                     @endif>
                                                     <label>{{$module->name}}</label>
                                                 </div>
@@ -661,10 +661,10 @@
                                         <div class="form-group row">
                                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Application Module') }}</label>
                                             <div class="col-md-6">
-                                                @foreach( $modules as $module )
+                                                @foreach( $sysmodules as $module )
                                                 <div class="form-check">
                                                     <input type="checkbox" name="modules[]" value="{{$module->id}}" 
-                                                    @if($user->first()->modules->pluck('id')->contains($module->id)) checked 
+                                                    @if($user->first()->sysmodules->pluck('id')->contains($module->id)) checked 
                                                     @endif>
                                                     <label>{{$module->name}}</label>
                                                 </div>

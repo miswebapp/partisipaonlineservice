@@ -72,12 +72,12 @@ class UserController extends Controller
     {
         $genders = Gender::all();
         $nationalities = Nationality::all();
-        $modules = SystemModule::all();
+        $sysmodules = SystemModule::all();
         $positions = Position::all();
         $departments = Department::all();
-        $user = UserDetails::with('account','employment','department','position','modules')->where('id',$id)->get();
+        $user = UserDetails::with('account','employment','department','position','sysmodules')->where('id',$id)->get();
         // dd($user);
-        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'modules'=>$modules,'genders'=>$genders,'nationalities'=>$nationalities]);
+        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'sysmodules'=>$sysmodules,'genders'=>$genders,'nationalities'=>$nationalities]);
     }
 
     /**

@@ -37,8 +37,8 @@ class UserModuleController extends Controller
     public function store(Request $request)
     {
         $user = UserDetails::find($request->user_id);
-        $user->modules()->sync($request->modules);
-        return redirect()->route('admin.users.show',$request['user_id'])->with('status_user_module','User module added successfully');
+        $user->sysmodules()->sync($request->modules);
+        return redirect()->route('admin.users.show',$request['user_id'])->with('status_user_module','User system module added successfully');
     }
 
     /**

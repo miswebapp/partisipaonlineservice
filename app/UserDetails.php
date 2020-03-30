@@ -7,7 +7,7 @@ use App\Models\Frs\SystemModule;
 class UserDetails extends Model
 {
     protected $fillable = [
-        'firstname', 'lastname', 'dob',
+        'niss','firstname', 'lastname','alias','gender','dob','email','telephone','nationality'
     ];
     public function account()
     {
@@ -49,7 +49,7 @@ class UserDetails extends Model
         return $this->belongsTo(FrsUser::class,'frs_users','user_id');
     }
 
-    public function modules()
+    public function sysmodules()
     {
         return $this->belongsToMany(SystemModule::class,'user_modules','user_id','module_id');
     }

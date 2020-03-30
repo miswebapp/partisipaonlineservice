@@ -4,14 +4,14 @@
             <!-- Modal -->
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#assignFrsUsers">
-                New Personnel
+                Add / Remove Users
             </button>
             <!-- Modal -->
             <div class="modal fade" id="assignFrsUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Assign Field Report Users</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add / Remove Field Report System Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -24,11 +24,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <div class='input-group' id='frsusers'>
-                                            <select multiple name='frsusers[]' class="custom-select">
-                                                @foreach($allusers as $user)
-                                                    <option value="{{$user->id}}">{{$user->fullnames}}</option>
-                                                @endforeach
-                                            </select>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -46,18 +42,18 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col">Full Name</th>
+                <th scope="col">Email</th>
                 <th scope="col">Team Name</th>
                 <th scope="col">Role Name</th>
-                <th scope="col">Email</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
-            @foreach($frsusers as $user)
+              
+            @foreach($frsusers->member as $frsuser)
                 <tr>
-                <td>{{$user->user->name}}</td>
-                <td></td>
-                <td></td>
+                <td>{{$frsuser->fullnames}}</td>
+                <td>{{$frsuser->email}}</td>
                 <td></td>
                 <td></td>
                 <td>
