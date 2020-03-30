@@ -17,7 +17,6 @@ class FrsUsersController extends Controller
      */
     public function index()
     {
-        $allusers = UserDetails::all();
         $maintitle="Reporting User Management";
         $frsusers = SystemModule::with('member')->where('alias','FRS')->first();
         // dd($frsusers);

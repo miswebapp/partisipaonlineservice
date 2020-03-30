@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Frs\SystemModule;
+use App\Models\Frs\Team;
 class UserDetails extends Model
 {
     protected $fillable = [
@@ -44,9 +44,9 @@ class UserDetails extends Model
         return $this->hasMany(Report::class,'user_id');
     }
 
-    public function frsusers()
+    public function frsteam()
     {
-        return $this->belongsTo(FrsUser::class,'frs_users','user_id');
+        return $this->belongsToMany(Team::class,'frs_users_teams','user_id','team_id');
     }
 
     public function sysmodules()

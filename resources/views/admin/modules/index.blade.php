@@ -25,7 +25,6 @@
                                         </div>
                                         <div class="modal-body">
                                             <form method="POST" action="{{ route('admin.modules.store') }}">
-                                                {{method_field('PUT')}}
                                                 @csrf
                                                 <div class="row">
                                                     <label for="alias" class="col-md-4 col-form-label text-md-right">{{ __('Alias') }}</label>

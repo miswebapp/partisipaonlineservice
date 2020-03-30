@@ -49,7 +49,7 @@
               </tr>
             </thead>
             <tbody>
-              
+            @if(!empty($frsusers))
             @foreach($frsusers->member as $frsuser)
                 <tr>
                 <td>{{$frsuser->fullnames}}</td>
@@ -67,6 +67,7 @@
                 
                 </tr>
             @endforeach
+            @endif
             </tbody>
         </table>
     </div>

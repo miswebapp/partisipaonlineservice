@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\UserDetails;
+use App\Models\Frs\Team;
 
 class FrsTeamsController extends Controller
 {
@@ -15,6 +17,8 @@ class FrsTeamsController extends Controller
     public function index()
     {
         $maintitle="Team Management";
+        $frsteams = Team::all(); 
+        dd($frsteams);
         return view('admin.frs.teams')->with('maintitle',$maintitle);
     }
 
