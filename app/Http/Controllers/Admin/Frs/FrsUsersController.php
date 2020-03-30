@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Frs\FrsUser;
+use App\UserDetails;
+use App\SystemModule;
 
-class MainController extends Controller
+class FrsUsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,11 @@ class MainController extends Controller
      */
     public function index()
     {
-        $maintitle="Field Reporting System";
-        return view('admin.frs.index')->with('maintitle',$maintitle);
+        $allusers = UserDetails::all();
+        $maintitle="Reporting User Management";
+        $frsusers = UserDetails::with('modules')->where('module_id','==',1)->get();
+        dd($frsusers);
+        return view('admin.frs.users', compact('frsusers','allusers'))->with('maintitle',$maintitle);
     }
 
     /**

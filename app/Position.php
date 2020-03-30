@@ -10,6 +10,6 @@ class Position extends Model
 
     public function userdetails()
     {
-        return $this->belongsToMany(Position::class,'employments','position_id','user_id');
+        return $this->belongsToMany(User::class,'employments','position_id','user_id');
     }
 }

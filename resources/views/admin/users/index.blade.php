@@ -8,7 +8,7 @@
                     <div class="d-flex align-items-center">
                         <h3>User Management</h3>
                         <div class="ml-auto">
-                            <!-- Modal -->
+                        <!-- Modal -->
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserLoginAccountModal">
                             New Personnel

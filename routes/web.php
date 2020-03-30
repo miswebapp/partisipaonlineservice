@@ -31,4 +31,14 @@ Route::group(['middleware' => ['auth', 'can:manage-user']], function(){
     Route::resource('/admin/departments','Admin\Basic\DepartmentController', array('names' => 'admin.departments'));
     Route::resource('/admin/modules','Admin\Basic\ModulesController', array('names' => 'admin.modules'));
     Route::resource('/admin/usermodules','Admin\Basic\UserModuleController', array('names' => 'admin.usermodules'));
+    Route::resource('/admin/frs','Admin\Frs\MainController', array('names' => 'admin.frs'));
+    Route::resource('/admin/frs-users','Admin\Frs\FrsUsersController', array('names' => 'admin.frs.users'));
+
+    Route::resource('/admin/frs-teams','Admin\Frs\FrsTeamsController', array('names' => 'admin.frs.teams'));
+    Route::resource('/admin/frs-programs','Admin\Frs\FrsProgramsController', array('names' => 'admin.frs.programs'));
+    Route::resource('/admin/frs-projects','Admin\Frs\FrsProjectController', array('names' => 'admin.frs.projects'));
+    Route::resource('/admin/frs-activities','Admin\Frs\FrsActivitiesController', array('names' => 'admin.frs.activities'));
+    Route::resource('/admin/frs-monitoringtools','Admin\Frs\FrsMonitoringToolsController', array('names' => 'admin.frs.monitoringtools'));
+    Route::resource('/admin/frs-counterparts','Admin\Frs\FrsCounterpartsController', array('names' => 'admin.frs.counterparts'));
+
 });

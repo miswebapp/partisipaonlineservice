@@ -278,6 +278,7 @@
                                 <div class="modal-body">
                                     <form method="POST" action="{{ route('admin.account.store') }}">
                                         @csrf
+                                        <input type="hidden" name="user_id" value={{$user->first()->id}}>
                                         <div class="row">
                                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Account Name') }}</label>
                                             <div class="col-md-6">
@@ -626,7 +627,6 @@
                                                 @endforeach 
                                             </div>
                                         </div>
-                                        
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </form>

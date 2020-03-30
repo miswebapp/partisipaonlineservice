@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Frs;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MainController extends Controller
+class FrsProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class MainController extends Controller
      */
     public function index()
     {
-        $maintitle="Field Reporting System";
-        return view('admin.frs.index')->with('maintitle',$maintitle);
+        $maintitle="Projects Management";
+        return view('admin.frs.projects')->with('maintitle',$maintitle);
     }
 
     /**

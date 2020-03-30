@@ -62,7 +62,7 @@
                                   Modules
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Field Reporting System</a>
+                                <a class="dropdown-item" href="{{ route('admin.frs.index') }}">Field Reporting System</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="#">...</a>
                                 </div>

@@ -106,12 +106,13 @@ class UserController extends Controller
         $user->lastname = $request->lastname;
         $user->alias = $request->alias;
         $user->gender = $request->gender;
+        $user->dob = $request->dob;
         $user->email = $request->email;
         $user->telephone = $request->telephone;
         $user->nationality = $request->nationality;
         $user->update();
 
-        return redirect()->route('admin.users.show',$id)->with('status_employment','User employment details updated successfully');
+        return redirect()->route('admin.users.show',$id)->with('status_profile','User profile details updated successfully');
     }
 
     /**

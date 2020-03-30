@@ -10,8 +10,11 @@
 //font awesome
 @import "node_modules/font-awesome/scss/font-awesome";
 
-//
+//JQuery Ui
 @import '~jquery-ui/themes/base/all.css';
+
+// Admin Lte
+@import '~admin-lte/dist/css/adminlte.min.css';
 
 .navbar-laravel {
     background-color: #fff;
