@@ -16,10 +16,10 @@ class FrsTeamsController extends Controller
      */
     public function index()
     {
+        $allusers = UserDetails::all();
         $maintitle="Team Management";
-        $frsteams = Team::all(); 
-        dd($frsteams);
-        return view('admin.frs.teams')->with('maintitle',$maintitle);
+        $frsteams = Team::with('member')->get(); 
+        return view('admin.frs.teams', compact('frsteams','allusers'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -40,7 +40,18 @@ class FrsTeamsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->act == 'sync_team_member'){
+            $team = Team::find($request->team_id);
+            $team->member()->attach($request->users);
+            return redirect()->route('admin.frs.teams.index')->with('status','Team members added successfully');
+        }
+        $team = new Team();
+        $team->alias = $request->alias;
+        $team->name = $request->name;
+        $team->description = $request->description;
+        $team->save();
+        return redirect()->route('admin.frs.teams.index')->with('status','New team added successfully');
+
     }
 
     /**

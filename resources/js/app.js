@@ -8,6 +8,8 @@ window.$ = window.jQuery = $;
 import 'jquery-ui/ui/widgets/datepicker.js';
 require('./bootstrap');
 require('admin-lte');
+require('select2');
+require('./customselect');
 
 window.Vue = require('vue');
 

@@ -17,10 +17,10 @@ class FrsUsersController extends Controller
      */
     public function index()
     {
+        $allusers = UserDetails::all();
         $maintitle="Reporting User Management";
         $frsusers = SystemModule::with('member')->where('alias','FRS')->first();
-        // dd($frsusers);
-        return view('admin.frs.users', compact('frsusers'))->with('maintitle',$maintitle);
+        return view('admin.frs.users', compact('frsusers','allusers'))->with('maintitle',$maintitle);
     }
 
     /**

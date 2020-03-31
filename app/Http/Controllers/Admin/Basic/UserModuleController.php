@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Basic;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserDetails;
+use App\SystemModule;
 
 class UserModuleController extends Controller
 {
@@ -36,8 +37,15 @@ class UserModuleController extends Controller
      */
     public function store(Request $request)
     {
+        
+        if($request->location == 'frs'){
+            $module = SystemModule::where('alias','FRS')->first();
+            $module->member()->attach($request->users);
+            return redirect()->route('admin.frs.users.index')->with('status','Users added sucsessfully');
+        }
+
         $user = UserDetails::find($request->user_id);
-        $user->sysmodules()->sync($request->modules);
+        $user->sysmodules()->sync($request->modules);        
         return redirect()->route('admin.users.show',$request['user_id'])->with('status_user_module','User system module added successfully');
     }
 
@@ -81,8 +89,12 @@ class UserModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        if($request->location == 'frs'){
+            $module = SystemModule::where('alias','FRS')->first();
+            $module->member()->detach($id);
+            return redirect()->route('admin.frs.users.index')->with('status','User removed sucsessfully');
+        }
     }
 }
