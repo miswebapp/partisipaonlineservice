@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Program extends Model
 {
-    protected $fillable = ['name','alias'];
-    protected $table = ['frs_programs'];
+    protected $fillable = ['name','alias','description'];
+    protected $table = 'frs_programs';
 }

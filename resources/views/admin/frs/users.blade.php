@@ -10,6 +10,11 @@
                 {{ session('status') }}
             </div>
             @endif
+            @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+            @endif
             <!-- Modal -->
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#assignFrsUsers">
@@ -61,14 +66,15 @@
               </tr>
             </thead>
             <tbody>
+            @if(!empty($frsusers))
             @if($frsusers->exists())
             @foreach($frsusers->member as $frsuser)
             
                 <tr>
                     <td>{{$frsuser->fullnames}}</td>
-                    <td>{{$frsuser->email}}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{$frsuser->employment['employee_email']}}</td>
+                    <td>{{$frsuser->frsteam()->first() == null ? '' : $frsuser->frsteam()->first()->alias}}</td>
+                    <td>{{$frsuser->frsteamrole()->first() == null ? '' : $frsuser->frsteamrole()->first()->name}}</td>
                     <td>
                         {{-- @can('edit-user')
                         <a href="#"><button type="button" class="btn btn-outline-primary btn-sm">Update details</button></a>
@@ -87,6 +93,7 @@
                     </td>
                 </tr>
             @endforeach
+            @endif
             @endif
             </tbody>
         </table>

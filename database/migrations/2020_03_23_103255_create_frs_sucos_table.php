@@ -20,6 +20,7 @@ class CreateFrsSucosTable extends Migration
             $table->string('name');
             $table->string('longitude');
             $table->string('latitude');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

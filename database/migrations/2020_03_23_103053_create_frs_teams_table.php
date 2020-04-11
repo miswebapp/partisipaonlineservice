@@ -17,7 +17,7 @@ class CreateFrsTeamsTable extends Migration
             $table->id();
             $table->string('alias');
             $table->string('name');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

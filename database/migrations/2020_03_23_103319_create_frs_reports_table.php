@@ -25,6 +25,7 @@ class CreateFrsReportsTable extends Migration
             $table->date('report_date');
             $table->date('submitted_date');
             $table->integer('status');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

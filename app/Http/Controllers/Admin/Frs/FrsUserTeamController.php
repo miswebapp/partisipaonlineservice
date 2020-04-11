@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Basic;
+namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\UserDetails;
 use App\Models\Frs\Team;
-use App\SystemModule;
 
-class UserModuleController extends Controller
+class FrsUserTeamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,18 +36,31 @@ class UserModuleController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->location == 'frs'){
-            $module = SystemModule::where('alias','FRS')->first();
-            if(empty($module)){
-                return redirect()->route('admin.frs.users.index')->with('error','Unable to add user to the module, Please create the module first');
+        
+        $team = Team::find($request->team_id);       
+        if($request->actions == "assign_team_member"){
+            if(!$team->hasMember($request->users)){
+                $team->member()->attach($request->users);
+                return redirect()->route('admin.frs.teams.show',$request->team_id)->with('status_success','Team members added successfully');
             }
-            $module->member()->attach($request->users);
-            return redirect()->route('admin.frs.users.index')->with('status','Users added sucsessfully');
         }
 
-        $user = UserDetails::find($request->user_id);
-        $user->sysmodules()->sync($request->modules);        
-        return redirect()->route('admin.users.show',$request['user_id'])->with('status_user_module','User system module added successfully');
+        if($request->actions == "assign_team_coordinator"){
+                if($team->hasPreviousCoordinator()){
+                    $previous_coordinator = $team->getCoordinatorMemberId->first()->id;
+                    // dd($previous_coordinator);
+                    $team->member()->detach($previous_coordinator);
+                    $team->member()->attach($previous_coordinator);
+                }
+
+                $team->member()->detach($request->user);
+                $team->member()->attach($request->user,['role_id' => 3]);
+                return redirect()->route('admin.frs.teams.show',$request->team_id)->with('status_success','Team coordinator added successfully');
+        }
+        
+
+        return redirect()->route('admin.frs.teams.show',$request->team_id)->with('status_error','Unable to add , member exist');
+        
     }
 
     /**
@@ -94,10 +105,8 @@ class UserModuleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if($request->location == 'frs'){
-            $module = SystemModule::where('alias','FRS')->first();
-            $module->member()->detach($id);
-            return redirect()->route('admin.frs.users.index')->with('status','User removed sucsessfully');
-        }
+        $team = Team::find($id);
+        $team->member()->detach($request->user_id);
+        return redirect()->route('admin.frs.teams.show',$id)->with('status_success','Team member removed successfully');
     }
 }

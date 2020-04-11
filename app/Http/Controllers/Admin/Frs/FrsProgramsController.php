@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Frs\Program;
 
 class FrsProgramsController extends Controller
 {
@@ -14,8 +15,10 @@ class FrsProgramsController extends Controller
      */
     public function index()
     {
+        $programs = Program::all();
+        // dd($programs);
         $maintitle="Programs Management";
-        return view('admin.frs.programs')->with('maintitle',$maintitle);
+        return view('admin.frs.programs',compact('programs'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -36,7 +39,15 @@ class FrsProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->alias);
+        $program = new Program();
+        $program->alias = $request->alias;
+        $program->name = $request->name;
+        // $program->description = $request->description;
+        $program->save();
+
+        return redirect()->route('admin.frs.programs.index')->with('status','New program added successfully');
+
     }
 
     /**
@@ -58,7 +69,7 @@ class FrsProgramsController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +81,13 @@ class FrsProgramsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $program = Program::find($id);
+        $program->alias = $request->alias;
+        $program->name = $request->name;
+        $program->description = $request->description;
+        $program->update();
+
+        return redirect()->route('admin.frs.programs.index')->with('status','Program details updated successfully');
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Frs\Team;
+use App\Role;
 class UserDetails extends Model
 {
     protected $fillable = [
@@ -46,11 +47,17 @@ class UserDetails extends Model
 
     public function frsteam()
     {
-        return $this->belongsToMany(Team::class,'frs_users_teams','user_id','team_id');
+        return $this->belongsToMany(Team::class,'frs_user_team_roles','user_id','team_id');
+    }
+
+    public function frsteamrole()
+    {
+        return $this->belongsToMany(Role::class,'frs_user_team_roles','user_id','role_id');
     }
 
     public function sysmodules()
     {
         return $this->belongsToMany(SystemModule::class,'user_modules','user_id','module_id');
     }
+    
 }

@@ -590,7 +590,7 @@
                         <table class="table table-borderless table-sm">
                             <tr><th>System Modules</th><th>User roles</th></tr>
                             @foreach($user->first()->sysmodules as $usermodule)
-                                <tr><td>{{$usermodule->name}}</td><td>-</td></tr>
+                                <tr><td>{{$usermodule->name}}</td><td>{{$usermodule->member()->first()->frsteamrole()->first()->name}}</td></tr>
                             @endforeach
                         </table>
                         <!-- Modal -->

@@ -9,7 +9,7 @@
     <!-- Modal -->
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#assignFrsUsers">
-        Add Field Teams
+        Add Teams
     </button>
     <!-- Modal -->
     <div class="modal fade" id="assignFrsUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -95,51 +95,11 @@
         <td>{{$team->description}}</td>
         <td>
             @can('edit-user')
-            <a href="#"><button type="button" class="btn btn-outline-info btn-sm">Edit</button></a>
+            <a href="{{ route('admin.frs.teams.show',$team->id) }}"><button type="button" class="btn btn-outline-info btn-sm">Review Members</button></a>
 
             @endcan
             @can('edit-user')
-                        <!-- Modal -->
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#assignTeamMember_{{$team->id}}">
-                Add Member
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="assignTeamMember_{{$team->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Add FST Team Member</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    <form method="POST" action="{{ route('admin.frs.teams.store')}}">
-                            @csrf
-                            <input type="hidden" name="act" value="sync_team_member">
-                            <input type="hidden" name="team_id" value="{{$team->id}}">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Available Users</label>
-                                            <select class="multiple_users form-control" heigh="50px" name="users[]" multiple="multiple">
-                                            @foreach($allusers as $user)
-                                                <option value="{{$user->id}}">{{$user->fullnames}}</option>
-                                            @endforeach
-                                            </select>
-                                   </div>
-                                </div>
-                            </div>       
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                </div>
-                </div>
-            </div>
+            
             @endcan
             @can('delete-user')
             <a href="#"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a>

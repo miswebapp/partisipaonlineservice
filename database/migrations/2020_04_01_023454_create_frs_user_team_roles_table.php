@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFrsProgramsTable extends Migration
+class CreateFrsUserTeamRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateFrsProgramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('frs_programs', function (Blueprint $table) {
+        Schema::create('frs_user_team_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('alias');
-            $table->string('description')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->integer('team_id')->unsigned();
+            $table->integer('role_id')->unsigned()->default(5);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateFrsProgramsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('frs_programs');
+        Schema::dropIfExists('frs_user_team_roles');
     }
 }

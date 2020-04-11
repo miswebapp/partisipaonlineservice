@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Frs;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserDetails;
+use App\SystemModule;
+use App\Role;
 use App\Models\Frs\Team;
 
 class FrsTeamsController extends Controller
@@ -19,6 +21,7 @@ class FrsTeamsController extends Controller
         $allusers = UserDetails::all();
         $maintitle="Team Management";
         $frsteams = Team::with('member')->get(); 
+        // dd($frsteams);
         return view('admin.frs.teams', compact('frsteams','allusers'))->with('maintitle',$maintitle);
     }
 
@@ -40,11 +43,6 @@ class FrsTeamsController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->act == 'sync_team_member'){
-            $team = Team::find($request->team_id);
-            $team->member()->attach($request->users);
-            return redirect()->route('admin.frs.teams.index')->with('status','Team members added successfully');
-        }
         $team = new Team();
         $team->alias = $request->alias;
         $team->name = $request->name;
@@ -62,7 +60,10 @@ class FrsTeamsController extends Controller
      */
     public function show($id)
     {
-        //
+        $moduleusers = SystemModule::with('member')->where('id',1)->get();
+        $frsteammembers = Team::with('member','memberrole')->where('id',$id)->get(); 
+        $maintitle = 'Team '.$frsteammembers->first()->name.'  ('.$frsteammembers->first()->alias.')';
+        return view('admin.frs.teams.show',compact('frsteammembers','moduleusers'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -85,7 +86,7 @@ class FrsTeamsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

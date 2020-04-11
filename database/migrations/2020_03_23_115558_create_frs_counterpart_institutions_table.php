@@ -17,6 +17,7 @@ class CreateFrsCounterpartInstitutionsTable extends Migration
             $table->id();
             $table->string('alias');
             $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
