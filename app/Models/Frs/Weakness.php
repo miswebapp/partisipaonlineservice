@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Weakness extends Model
 {
     protected $fillable = ['name','description'];
-    protected $table = ['frs_weaknesses'];
+    protected $table = 'frs_weaknesses';
 }

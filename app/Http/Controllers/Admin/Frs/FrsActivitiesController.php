@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\Frs\Activity;
+use App\Models\Frs\ActivityCategory;
+use App\Models\Frs\ActivityLocation;
 class FrsActivitiesController extends Controller
 {
     /**
@@ -14,8 +16,11 @@ class FrsActivitiesController extends Controller
      */
     public function index()
     {
+        $categories = ActivityCategory::all();
+        $levels = ActivityLocation::all();
+        $activities = Activity::with('category','location')->get();
         $maintitle="Activities Management";
-        return view('admin.frs.activities')->with('maintitle',$maintitle);
+        return view('admin.frs.activities', compact('activities','levels','categories'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -36,7 +41,18 @@ class FrsActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $activity = new Activity();
+        $activity->name = $request->name;
+        $activity->category_id = $request->category_id;
+        $activity->location_id = $request->location_id;
+        $activity->require_capacity = $request->require_capacity;
+        $activity->require_monitoring = $request->require_monitoring;
+        $activity->require_cycle = $request->require_cycle;
+        $activity->require_phase = $request->require_phase;
+
+        $activity->save();
+
+        return redirect()->route('admin.frs.activities.index')->with('status','New activity added successfully');
     }
 
     /**
@@ -70,7 +86,17 @@ class FrsActivitiesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $activity = Activity::find($id);
+        $activity->name = $request->name;
+        $activity->category_id = $request->category_id;
+        $activity->location_id = $request->location_id;
+        $activity->require_capacity = $request->require_capacity;
+        $activity->require_monitoring = $request->require_monitoring;
+        $activity->require_cycle = $request->require_cycle;
+        $activity->require_phase = $request->require_phase;
+
+        $activity->save();
+        return redirect()->route('admin.frs.activities.index')->with('status','Activity details updated successfully');
     }
 
     /**

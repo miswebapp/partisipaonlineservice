@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Frs\Project;
 
 class FrsProjectController extends Controller
 {
@@ -14,8 +15,9 @@ class FrsProjectController extends Controller
      */
     public function index()
     {
+        $projects = Project::all();
         $maintitle="Projects Management";
-        return view('admin.frs.projects')->with('maintitle',$maintitle);
+        return view('admin.frs.projects', compact('projects'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -36,7 +38,12 @@ class FrsProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->save();
+
+        return redirect()->route('admin.frs.projects.index')->with('status','New project added successfully');
     }
 
     /**
@@ -70,7 +77,12 @@ class FrsProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $project = Project::find($id);
+        $project->name = $request->name;
+        $project->description = $request->description;
+        $project->update();
+
+        return redirect()->route('admin.frs.projects.index')->with('status','Project details updated successfully');
     }
 
     /**

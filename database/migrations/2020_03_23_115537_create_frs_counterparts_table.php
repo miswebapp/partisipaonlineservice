@@ -16,8 +16,11 @@ class CreateFrsCounterpartsTable extends Migration
         Schema::create('frs_counterparts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('position');
+            $table->string('gender');
+            $table->integer('municipal_id')->unsigned();
+            $table->integer('position_id')->unsigned();
             $table->integer('institution_id')->unsigned();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

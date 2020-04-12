@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Frs\MonitoringTool;
+use App\Models\Frs\MonitoringRating;
 
-class FrsMonitoringToolsController extends Controller
+class FrsMonitoringRatingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FrsMonitoringToolsController extends Controller
      */
     public function index()
     {
-        $monitoringtools = MonitoringTool::all();
-        $maintitle="Monitoring Tools Management";
-        return view('admin.frs.monitoringtools',compact('monitoringtools'))->with('maintitle',$maintitle);
+        $monitoringratings = MonitoringRating::all();
+        $maintitle="Monitoring Tool Rating";
+        return view('admin.frs.monitoringratings',compact('monitoringratings'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -38,12 +38,12 @@ class FrsMonitoringToolsController extends Controller
      */
     public function store(Request $request)
     {
-        $monitoringtool = new MonitoringTool();
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->save();
+        $ratings = new MonitoringRating();
+        $ratings->name = $request->name;
+        $ratings->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool added successfully');
+        $ratings->save();
+        return redirect()->route('admin.frs.monitoringratings.index')->with('status','Monitoring ratings added successfully');
     }
 
     /**
@@ -77,12 +77,12 @@ class FrsMonitoringToolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $monitoringtool = MonitoringTool::find($id);
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->update();
+        $ratings = MonitoringRating::find($id);
+        $ratings->name = $request->name;
+        $ratings->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool updated successfully');
+        $ratings->update();
+        return redirect()->route('admin.frs.monitoringratings.index')->with('status','Monitoring ratings updated successfully');
     }
 
     /**

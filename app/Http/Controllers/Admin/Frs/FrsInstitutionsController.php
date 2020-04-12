@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Frs\MonitoringTool;
+use App\Models\Frs\Institution;
 
-class FrsMonitoringToolsController extends Controller
+class FrsInstitutionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FrsMonitoringToolsController extends Controller
      */
     public function index()
     {
-        $monitoringtools = MonitoringTool::all();
-        $maintitle="Monitoring Tools Management";
-        return view('admin.frs.monitoringtools',compact('monitoringtools'))->with('maintitle',$maintitle);
+        $institutions = Institution::all();
+        $maintitle="Institutions Management";
+        return view('admin.frs.institutions',compact('institutions'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -38,12 +38,14 @@ class FrsMonitoringToolsController extends Controller
      */
     public function store(Request $request)
     {
-        $monitoringtool = new MonitoringTool();
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->save();
+        $institution = new Institution();
+        $institution->alias = $request->alias;
+        $institution->name = $request->name;
+        $institution->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool added successfully');
+        $institution->save();
+
+        return redirect()->route('admin.frs.institutions.index')->with('status','Institution added successfully');
     }
 
     /**
@@ -77,12 +79,14 @@ class FrsMonitoringToolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $monitoringtool = MonitoringTool::find($id);
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->update();
+        $institution = Institution::find($id);
+        $institution->alias = $request->alias;
+        $institution->name = $request->name;
+        $institution->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool updated successfully');
+        $institution->update();
+
+        return redirect()->route('admin.frs.institutions.index')->with('status','Institution updated successfully');
     }
 
     /**

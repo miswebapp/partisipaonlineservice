@@ -209,18 +209,72 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Projects</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.frs.monitoringtools.index') }}" class="nav-link">
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Monitoring Tools</p>
+                  <p>Monitoring<i class="right fa fa-angle-left"></i></p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('admin.frs.counterparts.index') }}" class="nav-link">
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.monitoringtools.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Tools</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.monitoringratings.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Rating</p>
+                        </a>
+                      </li>
+                  </ul>
+              </li> 
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Counterparts</p>
+                  <p>Weaknesses<i class="right fa fa-angle-left"></i></p>
                 </a>
-              </li>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Category</p>
+                        </a>
+                      </li>
+                  </ul>
+              </li> 
+              <li class="nav-item has-treeview">
+                  <a href="#" class="nav-link">
+                    <i class="fa fa-circle nav-icon"></i>
+                    <p>Counterparts<i class="right fa fa-angle-left"></i></p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.counterparts.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Counterparts</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.institutions.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Institutions</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.positions.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Position</p>
+                        </a>
+                      </li>
+                  </ul>
+              </li>              
             </ul>
           </li>
           <li class="nav-item">

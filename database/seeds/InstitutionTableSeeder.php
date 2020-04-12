@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Models\Frs\Institution;
+use App\Models\Frs\Institution;
 class InstitutionTableSeeder extends Seeder
 {
     /**
@@ -11,6 +11,9 @@ class InstitutionTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Institution::truncate();
+        Institution::create(['alias'=>'PNDS','name'=>'Programa Nasional Desenvolvimentu Suku']);
+        Institution::create(['alias'=>'SMASA','name'=>'Seitor Munisipal Agua e Saneamentu']);
+        Institution::create(['alias'=>'DNSAS','name'=>'Diresaun Nasional Agua e Saneamentu']);
     }
 }

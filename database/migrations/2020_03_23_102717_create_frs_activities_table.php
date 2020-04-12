@@ -16,8 +16,8 @@ class CreateFrsActivitiesTable extends Migration
         Schema::create('frs_activities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type');
-            $table->string('location_level');
+            $table->integer('category_id')->unsigned();
+            $table->integer('location_id')->unsigned();
             $table->string('require_capacity');
             $table->string('require_monitoring');
             $table->string('require_cycle');

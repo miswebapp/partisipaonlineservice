@@ -20,5 +20,16 @@ class DatabaseSeeder extends Seeder
         $this->call(GenderTableSeeder::class);
         $this->call(ModuleTableSeeder::class);
         $this->call(ProgramsTableSeeder::class);
+        $this->call(ProjectTableSeeder::class);
+        $this->call(MonitoringToolsTableSeeder::class);
+        $this->call(MonitoringRatingTableSeeder::class);
+        $this->call(ActivityTableSeeder::class);
+        $this->call(ActivityCategoryTableSeeder::class);
+        $this->call(ActivityLocationTableSeeder::class);
+        $this->call(InstitutionTableSeeder::class);
+        $this->call(CounterpartsPositionTableSeeder::class);
+        $this->call(CounterpartsTableSeeder::class);
+        $this->call(MunicipalTableSeeder::class);
+        
     }
 }

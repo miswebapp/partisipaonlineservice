@@ -16,6 +16,7 @@ class CreateFrsProjectsTable extends Migration
         Schema::create('frs_projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

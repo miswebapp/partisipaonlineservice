@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFrsCounterpartInstitutionsTable extends Migration
+class CreateFrsInstitutionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFrsCounterpartInstitutionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('frs_counterpart_institutions', function (Blueprint $table) {
+        Schema::create('frs_institutions', function (Blueprint $table) {
             $table->id();
             $table->string('alias');
             $table->string('name');
@@ -29,6 +29,6 @@ class CreateFrsCounterpartInstitutionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('frs_counterpart_institutions');
+        Schema::dropIfExists('frs_institutions');
     }
 }

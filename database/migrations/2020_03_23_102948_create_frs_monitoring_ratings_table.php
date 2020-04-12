@@ -16,6 +16,7 @@ class CreateFrsMonitoringRatingsTable extends Migration
         Schema::create('frs_monitoring_ratings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

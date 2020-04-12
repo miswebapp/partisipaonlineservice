@@ -1,57 +1,151 @@
 @extends('layouts.frs-master')
 @section('content')
-    <div class="col-lg-6">
-            <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+<div class="col-lg-12">
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+             {{ session('status') }}
+        </div>
+    @endif
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addNewProject">
+        Add Project
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="addNewProject" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add new project to Field Report</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="{{ route('admin.frs.projects.store')}}">
+                    @csrf
+                    <div class="row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Name') }}</label>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class='input-group' id='name'>
+                                    <input type='text' class="form-control" name="name"/>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-                </p>
+                    <div class="row">
+                        <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class='input-group' id='description'>
+                                    <textarea rows="3" class="form-control" name="description">
+                                    </textarea>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-compose"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>    
+@if(!empty($projects))
+<table class="table table-bordered table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Project Name</th>
+        <th scope="col">Descriptions</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach($projects as $project)
+        <tr>
+        <td>{{$project->name}}</td>
+        <td>{{$project->description}}</td>
+            <td>
+                @can('edit-user')
+                <!-- Modal -->
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editProject{{$project->id}}">
+                    Edit
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="editProject{{$project->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form method="POST" action="{{ route('admin.frs.projects.update',$project->id)}}">
+                            {{method_field('PUT')}}
+                            @csrf
+                                <div class="row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Name') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class='input-group' id='name_{{$project->id}}'>
+                                                <input type='text' class="form-control" name="name" value="{{$project->name}}"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk of the card's
-                content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-            </div>
-            </div><!-- /.card -->
-    </div>
-        
-    <div class="col-lg-6">
-            <div class="card">
-            <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-            <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-            </div>
-            <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            </div>
-    </div>
+                                <div class="row">
+                                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class='input-group' id='description_{{$project->id}}'>
+                                                
+                                                <textarea rows="3" class="form-control" name="description">
+                                                    {{$project->description}}
+                                                </textarea>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-compose"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>    
+                @endcan
+                @can('edit-user')
+                @endcan
+                @can('delete-user')
+                <a href="#"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a>
+                @endcan
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@endif
+</div>
 @endsection

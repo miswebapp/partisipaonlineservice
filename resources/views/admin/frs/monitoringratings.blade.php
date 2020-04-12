@@ -8,21 +8,21 @@
     @endif
     <!-- Modal -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addNewMonitoringTool">
-        Add Monitoring Tool
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addNewMonitoringRatings">
+        Add Monitoring Rating
     </button>
     <!-- Modal -->
-    <div class="modal fade" id="addNewMonitoringTool" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="addNewMonitoringRatings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Add new monitoring tool to Field Report</h5>
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add new monitoring ratings to Field Report</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="{{ route('admin.frs.monitoringtools.store')}}">
+            <form method="POST" action="{{ route('admin.frs.monitoringratings.store')}}">
                     @csrf
                     <div class="row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -61,47 +61,47 @@
         </div>
         </div>
     </div>    
-@if(!empty($monitoringtools))
+@if(!empty($monitoringratings))
 <table class="table table-bordered table-sm">
     <thead class="thead-light">
       <tr>
-        <th scope="col">Monitoring Tool</th>
+        <th scope="col">Rating</th>
         <th scope="col">Descriptions</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($monitoringtools as $monitoring)
+        @foreach($monitoringratings as $rating)
         <tr>
-        <td>{{$monitoring->name}}</td>
-        <td>{{$monitoring->description}}</td>
+        <td>{{$rating->name}}</td>
+        <td>{{$rating->description}}</td>
             <td>
                 @can('edit-user')
                 <!-- Modal -->
                 <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editMonitoringTool{{$monitoring->id}}">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editMonitoringRatings{{$rating->id}}">
                     Edit
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="editMonitoringTool{{$monitoring->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="editMonitoringRatings{{$rating->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit monitoring tool</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit monitoring ratings</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
-                        <form method="POST" action="{{ route('admin.frs.monitoringtools.update',$monitoring->id)}}">
+                        <form method="POST" action="{{ route('admin.frs.monitoringratings.update',$rating->id)}}">
                             {{method_field('PUT')}}
                             @csrf
                                 <div class="row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <div class='input-group' id='name_{{$monitoring->id}}'>
-                                                <input type='text' class="form-control" name="name" value="{{$monitoring->name}}"/>
+                                            <div class='input-group' id='name_{{$rating->id}}'>
+                                                <input type='text' class="form-control" name="name" value="{{$rating->name}}"/>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                                 </div>
@@ -114,10 +114,10 @@
                                     <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <div class='input-group' id='description_{{$monitoring->id}}'>
+                                            <div class='input-group' id='description_{{$rating->id}}'>
                                                 
                                                 <textarea rows="3" class="form-control" name="description">
-                                                    {{$monitoring->description}}
+                                                    {{$rating->description}}
                                                 </textarea>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fa fa-compose"></i></span>

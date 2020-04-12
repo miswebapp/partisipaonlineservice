@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin\Frs;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Frs\MonitoringTool;
+use App\Models\Frs\Position;
 
-class FrsMonitoringToolsController extends Controller
+class FrsPositionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FrsMonitoringToolsController extends Controller
      */
     public function index()
     {
-        $monitoringtools = MonitoringTool::all();
-        $maintitle="Monitoring Tools Management";
-        return view('admin.frs.monitoringtools',compact('monitoringtools'))->with('maintitle',$maintitle);
+        $positions = Position::all();
+        $maintitle="Counterpart Position Management";
+        return view('admin.frs.positions',compact('positions'))->with('maintitle',$maintitle);
     }
 
     /**
@@ -38,12 +38,13 @@ class FrsMonitoringToolsController extends Controller
      */
     public function store(Request $request)
     {
-        $monitoringtool = new MonitoringTool();
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->save();
+        $position = new Position();
+        $position->alias = $request->alias;
+        $position->name = $request->name;
+        $position->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool added successfully');
+        $position->save();
+        return redirect()->route('admin.frs.positions.index')->with('status','Position added successfully');
     }
 
     /**
@@ -77,12 +78,13 @@ class FrsMonitoringToolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $monitoringtool = MonitoringTool::find($id);
-        $monitoringtool->name = $request->name;
-        $monitoringtool->description = $request->description;
-        $monitoringtool->update();
+        $position = Position::find($id);
+        $position->alias = $request->alias;
+        $position->name = $request->name;
+        $position->description = $request->description;
 
-        return redirect()->route('admin.frs.monitoringtools.index')->with('status','Monitoring tool updated successfully');
+        $position->update();
+        return redirect()->route('admin.frs.positions.index')->with('status','Position updated successfully');
     }
 
     /**
