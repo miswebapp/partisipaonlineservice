@@ -43,5 +43,9 @@ Route::group(['middleware' => ['auth', 'can:manage-user']], function(){
     Route::resource('/admin/frs-counterparts','Admin\Frs\FrsCounterpartsController', array('names' => 'admin.frs.counterparts'));
     Route::resource('/admin/frs-institutions','Admin\Frs\FrsInstitutionsController', array('names' => 'admin.frs.institutions'));
     Route::resource('/admin/frs-positions','Admin\Frs\FrsPositionsController', array('names' => 'admin.frs.positions'));
+    Route::resource('/admin/frs-weaknesses','Admin\Frs\FrsWeaknessesController', array('names' => 'admin.frs.weaknesses'));
+    Route::resource('/admin/frs-weaknessescategories','Admin\Frs\FrsWeaknessesCategoriesController', array('names' => 'admin.frs.weaknessescategories'));
+    Route::resource('/modules/frs/submission','Modules\Frs\FRSReportsController', array('names' => 'module.frs.submissions'));
+    Route::post('/modules/frs/helpers/fetc','Modules\Frs\FRSReportHelpersController@fetc');
     
 });

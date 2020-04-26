@@ -8,21 +8,21 @@
     @endif
     <!-- Modal -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addNewMonitoringTool">
-        Add Monitoring Tool
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addWeaknessesCategory">
+        Add Weakness Category
     </button>
     <!-- Modal -->
-    <div class="modal fade" id="addNewMonitoringTool" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" id="addWeaknessesCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalCenterTitle">Add new monitoring tool to Field Report</h5>
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add new weaknesses category to Field Report</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="{{ route('admin.frs.monitoringtools.store')}}">
+            <form method="POST" action="{{ route('admin.frs.weaknessescategories.store')}}">
                     @csrf
                     <div class="row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -37,12 +37,11 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row">
-                        <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                        <label class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
                         <div class="col-md-8">
                             <div class="form-group">
-                                <div class='input-group' id='description'>
+                                <div class='input-group'>
                                     <textarea rows="3" class="form-control" name="description">
                                     </textarea>
                                     <div class="input-group-append">
@@ -61,71 +60,69 @@
         </div>
         </div>
     </div>    
-@if(!empty($monitoringtools))
+@if(!empty($categories))
 <table class="table table-bordered table-sm">
     <thead class="thead-light">
       <tr>
-        <th scope="col">Monitoring Tool</th>
+        <th scope="col">Name</th>
         <th scope="col">Descriptions</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($monitoringtools as $monitoring)
+        @foreach($categories as $category)
         <tr>
-        <td>{{$monitoring->name}}</td>
-        <td>{{$monitoring->description}}</td>
+        <td>{{$category->name}}</td>
+        <td>{{$category->description}}</td>
             <td>
                 @can('edit-user')
                 <!-- Modal -->
                 <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editMonitoringTool{{$monitoring->id}}">
+            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editWeaknessesCategory{{$category->id}}">
                     Edit
                 </button>
                 <!-- Modal -->
-                <div class="modal fade" id="editMonitoringTool{{$monitoring->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade" id="editWeaknessesCategory{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit monitoring tool</h5>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit weakness category</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
-                        <form method="POST" action="{{ route('admin.frs.monitoringtools.update',$monitoring->id)}}">
+                        <form method="POST" action="{{ route('admin.frs.weaknessescategories.update',$category->id)}}">
                             {{method_field('PUT')}}
                             @csrf
-                                <div class="row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <div class='input-group' id='name_{{$monitoring->id}}'>
-                                                <input type='text' class="form-control" name="name" value="{{$monitoring->name}}"/>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
-                                                </div>
+                            <div class="row">
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <input type='text' class="form-control" name="name" value="{{$category->name}}"/>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <div class='input-group' id='description_{{$monitoring->id}}'>
-                                                
-                                                <textarea rows="3" class="form-control" name="description">
-                                                    {{$monitoring->description}}
-                                                </textarea>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text"><i class="fa fa-compose"></i></span>
-                                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <textarea rows="3" class="form-control" name="description">
+                                                {{$category->description}}
+                                            </textarea>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text"><i class="fa fa-compose"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

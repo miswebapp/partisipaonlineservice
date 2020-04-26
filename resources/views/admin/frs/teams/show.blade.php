@@ -32,20 +32,23 @@
                             @csrf
                             <input type="hidden" name="team_id" value="{{ $frsteammembers->first()->id }}">
                             <input type="hidden" name="actions" value="assign_team_member">
-                            <div class="row">
-                                <div class="col-md-12">
+                            <div class="row">    
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Available Users') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
-                                        <label>Available Users</label>
-                                            <select class="multiple_users form-control" heigh="50px" name="users[]" multiple="multiple">
-                                            @foreach($moduleusers->first()->member as $user)
-                                                @if(!$user->frsteam()->exists())
-                                                <option value="{{$user->id}}">{{$user->fullnames}}</option>
-                                                @endif()
-                                            @endforeach
+                                        <div class='input-group'>
+                                            <select class="multiitems" name="users[]" multiple>
+                                                <option value="0" disabled>-- Select Available Staff --</option>
+                                                @foreach($moduleusers->first()->member as $user)
+                                                    @if(!$user->frsteam()->exists())
+                                                    <option value="{{$user->id}}">{{$user->fullnames}}</option>
+                                                    @endif()
+                                                @endforeach
                                             </select>
+                                        </div>
                                    </div>
                                 </div>
-                            </div>       
+                            </div>     
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Add</button>
                         </form>

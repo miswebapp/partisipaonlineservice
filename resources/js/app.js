@@ -3,13 +3,16 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
 import $ from 'jquery';
 window.$ = window.jQuery = $;
-import 'jquery-ui/ui/widgets/datepicker.js';
-require('./bootstrap');
 require('admin-lte');
-require('select2');
-require('./customselect');
+require('./bootstrap');
+require('./plugins');
+
+//FRS js plugins
+require('./frs/index');
+
 
 window.Vue = require('vue');
 
@@ -34,6 +37,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 // $('#employee_startdate').datepicker();
 // $('#employee_enddate').datepicker();
+
 
 const app = new Vue({
     el: '#app',

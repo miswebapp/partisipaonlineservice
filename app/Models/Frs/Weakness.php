@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Weakness extends Model
 {
-    protected $fillable = ['name','description'];
+    protected $fillable = ['category_id','name','description'];
     protected $table = 'frs_weaknesses';
+
+    public function category()
+    {
+        return $this->belongsTo(WeaknessCategory::class);
+    }
 }

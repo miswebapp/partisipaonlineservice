@@ -15,6 +15,7 @@ class CreateFrsWeaknessesTable extends Migration
     {
         Schema::create('frs_weaknesses', function (Blueprint $table) {
             $table->id();
+            $table->integer('category_id')->unsigned();
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();

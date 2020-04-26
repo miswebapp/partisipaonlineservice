@@ -30,6 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CounterpartsPositionTableSeeder::class);
         $this->call(CounterpartsTableSeeder::class);
         $this->call(MunicipalTableSeeder::class);
-        
+        $this->call(WeaknessCategoriesTableSeeder::class);
+        $this->call(WeaknessesTableSeeder::class);        
+        $this->call(PostoTableSeeder::class);    
+        $this->call(SucoTableSeeder::class);     
+        $this->call(ProjectActivity::class);  
     }
 }

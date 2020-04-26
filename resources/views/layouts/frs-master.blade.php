@@ -10,12 +10,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
   <title>Field Reporting System</title>
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+
+  <script src="{{ asset('js/app.js') }}"></script>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -174,8 +175,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
           </li>  
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa fa-tachometer-alt"></i>
+            <a href="#" class="nav-link">
+              {{-- <i class="nav-icon fa fa-tachometer-alt"></i> --}}
               <p>Management<i class="right fa fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
@@ -211,7 +212,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
+                  {{-- <i class="fa fa-circle nav-icon"></i> --}}
+                  <p>Weaknesses<i class="right fa fa-angle-left"></i></p>
+                </a>
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.weaknesses.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Type</p>
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="{{ route('admin.frs.weaknessescategories.index') }}" class="nav-link">
+                          <i class="fa fa-angle-right nav-icon"></i>
+                          <p>Category</p>
+                        </a>
+                      </li>
+                  </ul>
+              </li> 
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  {{-- <i class="fa fa-circle nav-icon"></i> --}}
                   <p>Monitoring<i class="right fa fa-angle-left"></i></p>
                 </a>
                   <ul class="nav nav-treeview">
@@ -230,28 +251,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </ul>
               </li> 
               <li class="nav-item has-treeview">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle nav-icon"></i>
-                  <p>Weaknesses<i class="right fa fa-angle-left"></i></p>
-                </a>
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="fa fa-angle-right nav-icon"></i>
-                          <p>Type</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="#" class="nav-link">
-                          <i class="fa fa-angle-right nav-icon"></i>
-                          <p>Category</p>
-                        </a>
-                      </li>
-                  </ul>
-              </li> 
-              <li class="nav-item has-treeview">
                   <a href="#" class="nav-link">
-                    <i class="fa fa-circle nav-icon"></i>
+                    {{-- <i class="fa fa-circle nav-icon"></i> --}}
                     <p>Counterparts<i class="right fa fa-angle-left"></i></p>
                   </a>
                   <ul class="nav nav-treeview">
@@ -275,6 +276,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </li>
                   </ul>
               </li>              
+            </ul>
+          </li>
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              {{-- <i class="nav-icon fa fa-tachometer-alt"></i> --}}
+              <p>Reports<i class="right fa fa-angle-left"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+              <a href="{{route('module.frs.submissions.index')}}" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>My Submission</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>List Team Submission</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Generate</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -317,6 +344,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+          <div id="app"></div>
           @yield('content')
         </div>
       </div><!-- /.container-fluid -->

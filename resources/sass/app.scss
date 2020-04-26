@@ -15,9 +15,9 @@
 
 // Admin Lte
 @import '~admin-lte/dist/css/adminlte.min.css';
+// @import '~admin-lte/dist/css/adminlte.min.css.map';
 
-// Select2
-@import '~select2/dist/css/select2.min.css';
+@import '~multiple-select/dist/multiple-select.css';
 
 .navbar-laravel {
     background-color: #fff;

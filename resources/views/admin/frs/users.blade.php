@@ -4,7 +4,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/select/customselect.js')}}"></script>
     @endpush
-    <div class="col-lg-12">
+    <div class="col-lg-8">
             @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -35,15 +35,18 @@
                             @csrf
                             <input type="hidden" name="location" value="frs">
                             <div class="row">
-                                <div class="col-md-12">
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Available Users') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
-                                        <label>Available Users</label>
-                                            <select class="multiple_users form-control" heigh="50px" name="users[]" multiple="multiple">
+                                        <div class='input-group'>
+                                            <select class="multiitems" name="users[]" multiple>
+                                            <option value="0" disabled>-- Select Available Staff --</option>
                                             @foreach($allusers as $user)
                                                 <option value="{{$user->id}}">{{$user->fullnames}}</option>
                                             @endforeach
                                             </select>
-                                   </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>       
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
