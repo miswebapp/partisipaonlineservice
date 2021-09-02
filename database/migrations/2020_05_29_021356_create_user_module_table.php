@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserModulesTable extends Migration
+class CreateUserModuleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_modules', function (Blueprint $table) {
+        Schema::create('user_module', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('module_id')->unsigned();
@@ -28,6 +28,6 @@ class CreateUserModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_modules');
+        Schema::dropIfExists('user_module');
     }
 }

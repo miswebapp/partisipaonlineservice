@@ -18,13 +18,19 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        footer {
+                margin: 0 auto;
+                width: 100%;
+            }
+    </style>
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <h2><a class="navbar-brand" href="{{ url('/') }}">
-                    PARTISIPA Online Service
+                    <img style="width:200px;" src="{{ asset('images/welcome_top.jpg')}}"/><div class="title ml-4">Online System</div>
                 </a>
                 </h2>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,6 +101,34 @@
             <div id="app"></div>
             @yield('content')
         </main>
+
+        {{-- <footer>
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow fixed-bottom">
+                <div class="container">
+                    <div class="content">
+                        <img class="img-fluid" style="width:250px;" src="{{ asset('images/welcome_bottom.jpg')}}"/>
+                    </div>
+                </div>
+            </nav>
+        </footer> --}}
+        <footer class="footer">
+            <div class="container-fluid bg-white shadow">
+             <div class="row text-center">
+             <div class="col-lg-12"><strong>Copyright &copy; 2020 <a href="{{ route('home')}}">Partnership to Strengthen Village Development and Municipal Administration</strong> All rights reserved.</div>
+             </div>
+             <div class="row justify-content-center text-center">
+              <div class="col-lg-4">
+                
+              </div>                        
+              <div class="col-lg-4">
+                <img class="img-fluid" style="width:250px;" src="{{ asset('images/welcome_bottom.jpg')}}"/>
+              </div>                        
+              <div class="col-lg-4">
+               
+              </div>
+             </div>
+            </div>    
+           </footer>
     </div>
 </body>
 </html>

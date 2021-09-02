@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WeaknessesTableSeeder::class);        
         $this->call(PostoTableSeeder::class);    
         $this->call(SucoTableSeeder::class);     
-        $this->call(ProjectActivity::class);  
+        $this->call(ProjectActivityTableSeeder::class);  
+        $this->call(FSTTeamTableSeeder::class);  
+        $this->call(ModuleTableSeeder::class);  
     }
 }

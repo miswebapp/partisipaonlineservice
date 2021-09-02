@@ -15,12 +15,12 @@ class CreateFrsReportsTable extends Migration
     {
         Schema::create('frs_reports', function (Blueprint $table) {
             $table->id();
-            $table->string('report_id');
+            $table->string('report_id')->primaryKey();
             $table->integer('user_id')->unsigned();
             $table->integer('team_id')->unsigned();
             $table->integer('program_id')->unsigned();
             $table->integer('activity_id')->unsigned();
-            $table->text('comment');
+            $table->text('observation');
             $table->text('recommendation');
             $table->date('report_date');
             $table->date('submitted_date');

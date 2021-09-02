@@ -17,11 +17,11 @@
             @endif
             <!-- Modal -->
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#assignFrsUsers">
+            {{-- <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#assignFrsUsers">
                 Add Users
-            </button>
+            </button> --}}
             <!-- Modal -->
-            <div class="modal fade" id="assignFrsUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            {{-- <div class="modal fade" id="assignFrsUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 </div>
-            </div>    
+            </div>     --}}
         <table class="table table-bordered table-sm">
             <thead class="thead-light">
               <tr>
@@ -69,15 +69,18 @@
               </tr>
             </thead>
             <tbody>
-            @if(!empty($frsusers))
             @if($frsusers->exists())
-            @foreach($frsusers->member as $frsuser)
-            
+            @if($frsusers->sysmodules)
+            @foreach($frsusers->sysmodules as $frsuser)
                 <tr>
-                    <td>{{$frsuser->fullnames}}</td>
-                    <td>{{$frsuser->employment['employee_email']}}</td>
-                    <td>{{$frsuser->frsteam()->first() == null ? '' : $frsuser->frsteam()->first()->alias}}</td>
-                    <td>{{$frsuser->frsteamrole()->first() == null ? '' : $frsuser->frsteamrole()->first()->name}}</td>
+                    <td>{{$frsuser->user->first()->fullnames}}</td>
+                    <td>
+                        @if(!empty($frsuser->user->first()->employment))
+                        {{$frsuser->user->first()->employment->employee_email}}
+                        @endif
+                    </td>
+                    {{-- <td>{{$frsuser->frsteam()->first() == null ? '' : $frsuser->frsteam()->first()->alias}}</td> --}}
+                    {{-- <td>{{$frsuser->frsteamrole()->first() == null ? '' : $frsuser->frsteamrole()->first()->name}}</td> --}}
                     <td>
                         {{-- @can('edit-user')
                         <a href="#"><button type="button" class="btn btn-outline-primary btn-sm">Update details</button></a>

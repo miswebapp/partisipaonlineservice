@@ -57,6 +57,14 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .bottom {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                color: white;
+                text-align: center;
+            }
 
             .m-b-md {
                 margin-bottom: 30px;
@@ -80,10 +88,16 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    PARTISIPA - Online Services
+                <img style="width:500px;" src="{{ asset('images/welcome_top.jpg')}}"/>
+                {{-- <div class="title"> --}}
+                    <h1>Online Services</h1>
+                {{-- </div> --}}
+
+                <div class="bottom">
+                    <img style="width:250px;" src="{{ asset('images/welcome_bottom.jpg')}}"/>
                 </div>
             </div>
+            
         </div>
     </body>
 </html>

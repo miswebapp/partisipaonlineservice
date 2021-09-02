@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\UserDetails;
 use App\Models\Frs\Team;
 use App\SystemModule;
+use App\Module;
+use App\Role;
 
 class UserModuleController extends Controller
 {
@@ -38,18 +40,21 @@ class UserModuleController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->location == 'frs'){
-            $module = SystemModule::where('alias','FRS')->first();
-            if(empty($module)){
-                return redirect()->route('admin.frs.users.index')->with('error','Unable to add user to the module, Please create the module first');
-            }
-            $module->member()->attach($request->users);
-            return redirect()->route('admin.frs.users.index')->with('status','Users added sucsessfully');
-        }
+        $module = $request->module_id;
+        $users = $request->users;
 
-        $user = UserDetails::find($request->user_id);
-        $user->sysmodules()->sync($request->modules);        
-        return redirect()->route('admin.users.show',$request['user_id'])->with('status_user_module','User system module added successfully');
+        if(!empty($users)){
+            foreach($users as $user){
+                $sysmodule = new SystemModule();
+                if( $sysmodule::where('user_id',$user)->where('module_id',$module)->count() == 0){
+                    $sysmodule->user()->associate($user);
+                    $sysmodule->module()->associate($module);
+                    $sysmodule->save();
+                }
+            }
+        }
+     
+        return redirect()->route('admin.usermodules.show',$request['module_id']);
     }
 
     /**
@@ -60,7 +65,12 @@ class UserModuleController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = UserDetails::all();
+        $module = Module::find($id);
+        $usermodules = SystemModule::with('user','module')->where('module_id',$id)->get();
+        // dd($usermodules);
+        // dd($users);
+        return view('admin.modules.show',compact('module','users','usermodules'));  
     }
 
     /**
@@ -83,7 +93,7 @@ class UserModuleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
@@ -94,10 +104,9 @@ class UserModuleController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if($request->location == 'frs'){
-            $module = SystemModule::where('alias','FRS')->first();
-            $module->member()->detach($id);
-            return redirect()->route('admin.frs.users.index')->with('status','User removed sucsessfully');
-        }
+
+        SystemModule::where('id',$id)->delete();
+        return redirect()->route('admin.usermodules.show',$request->module_id)->with('status','User removed sucsessfully');
+
     }
 }

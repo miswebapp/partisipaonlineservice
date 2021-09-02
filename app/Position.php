@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Position extends Model
 {
     protected $table='positions';
+    protected $primaryKey = 'id';
 
-    public function userdetails()
+
+    public function useremployement()
     {
-        return $this->belongsToMany(User::class,'employments','position_id','user_id');
+        return $this->belongsToMany(Employment::class,'employments','position_id','employee_id');
     }
 }

@@ -10,4 +10,14 @@ class Role extends Model
     {
         return $this->belongsToMany(User::class,'user_role','role_id','account_id');
     }
+
+    public function sysmodules()
+    {
+        return $this->hasMany(SystemModule::class);
+    }
+
+    public function getUserrolesAttributes()
+    {   
+        return $this->code += $this->code;
+    }
 }
