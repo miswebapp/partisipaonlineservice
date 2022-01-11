@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Services\Repositories\Frs;
+namespace App\Services\Repositories\FRS;
 
 use Illuminate\Support\Carbon;
-use App\Services\Interfaces\Frs\FrsReportRepositoryInterface;
+use App\Services\Interfaces\FRS\FrsreportreporsitoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Frs\Program;
 use App\Models\Frs\Report;
+use App\Models\Frs\ReportPhoto;
 use App\Models\Frs\Team;
+use App\Models\Frs\Weakness;
 use App\UserDetails;
 use App\User;
 
 
-class FrsReportRepository implements FrsReportRepositoryInterface {
+class FrsreportRepository implements FrsreportreporsitoryInterface {
 
 
     public function saveNewReport($request)
@@ -32,11 +34,12 @@ class FrsReportRepository implements FrsReportRepositoryInterface {
         $report->team_id = $team_id;
         $report->program_id = $request->program_id;
         $report->activity_id = $request->activity_id;
-        $report->comment = $request->observation;
+        $report->observation = $request->observation;
         $report->recommendation = $request->recommendation;
         $report->report_date = $date;
         $report->submitted_date = $submitted_date;
-        $report->status = "P";
+        $report->status = 1;
+        $report->save();
 
         //Project , project activity , monitoring , rating
         $project_id = $request->project_id;
@@ -51,15 +54,30 @@ class FrsReportRepository implements FrsReportRepositoryInterface {
 
         //Users
         $users = $request->users;
-        
+
         //Weaknesses
-        $wekanesses = $request->wekanesses;
+        $weaknesses = $request->wekanesses;
+
+        foreach($weaknesses as $item){
+            $report->weaknesses()->attach($item);
+        }
+        
 
         //Photo
-        $photo = $request->photo;
+        $fileName=$report_id.".".$request->file->extension();
+        $fileLocation = public_path('uploads');
+        $photo = new ReportPhoto();
+        $photo->report_id = $report_id;
+        $photo->file_name = $fileName;
+        $photo->file_location = $fileLocation;
+        $request->file->move($fileLocation, $fileName);
+        $photo->save();
+        
+        dd("Saved");
 
         
     }
+
     public function getAllReports()
     {
         //

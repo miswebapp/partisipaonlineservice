@@ -8,7 +8,7 @@
                     <div class="d-flex align-items-center">
                         <h3>System Modules Management</h3>
                         <div class="ml-auto">
-                            <!-- Modal -->
+                                <!-- Modal -->
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#editAppModule">
                                     Setup New Module
@@ -144,9 +144,9 @@
                           <tr>
                             <th scope="col">Name</th>
                             <th scope="col">Alias</th>
-                            <th scope="col">Controller Namespace</th>
+                            {{-- <th scope="col">Controller Namespace</th>
                             <th scope="col">Model Namespace</th>
-                            <th scope="col">View Namespace</th>
+                            <th scope="col">View Namespace</th> --}}
                             <th scope="col">Route Name</th>
                             <th scope="col">Actions</th>
                           </tr>
@@ -156,17 +156,23 @@
                             <tr>
                             <td>{{$module->name}}</td>
                             <td>{{$module->alias}}</td>
-                            <td>{{$module->controller_namespace}}</td>
+                            {{-- <td>{{$module->controller_namespace}}</td>
                             <td>{{$module->model_namespace}}</td>
-                            <td>{{$module->view_namespace}}</td>
+                            <td>{{$module->view_namespace}}</td> --}}
                             <td>{{$module->route_name}}</td>
                             <td>
                                 @can('edit-user')
+                                <button type="button" class="btn btn-outline-primary btn-sm">
+                                    <a href="{{ route('admin.usermodules.show',$module->id)}}">Assign</a>
+                                </button>
                                 <!-- Modal -->
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editAppModule">
-                                    Edit Module
+                                    Edit
                                 </button>
+
+                                
+
                                 <!-- Modal -->
                                 <div class="modal fade" id="editAppModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -285,7 +291,7 @@
                                 </div>
                                 @endcan
                                 @can('delete-user')
-                                <a href=" {{ route('admin.roles.destroy', $module->id)}}"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a>
+                                <a href=" {{ route('admin.roles.destroy', $module->id)}}"><button type="button" class="btn btn-outline-danger btn-sm">Disable</button></a>
                                 @endcan
                             </td>
                             

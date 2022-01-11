@@ -22,7 +22,7 @@
             </button>
             </div>
             <div class="modal-body">
-            <form method="POST" action="{{ route('module.frs.submissions.store')}}">
+            <form method="POST" action="{{ route('module.frs.submissions.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <label for="report_date" class="col-md-2 col-form-label text-md-right">{{ __('Date') }}</label>
@@ -203,15 +203,16 @@
                               </div>
                         </div>
                     </div> 
-                    <div class="row form-group">    
-                        <label class="col-md-2 col-form-label text-md-right">{{ __('Photo') }}</label>
+                    <div class="row">    
+                        <label class="col-md-2 col-form-label text-md-right mb-5">{{ __('Photo') }}</label>
                         <div class="col-md-8">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input form-control-sm  p-0" id="customFile" name="photo">
-                                <label class="custom-file-label" for="customFile">Choose a field photo</label>
-                              </div>
+                                <input type="file" class="custom-file-input" id="customFile" name="file">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
                         </div>
                     </div> 
+                  
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                 </form>
@@ -241,5 +242,8 @@
     </tbody>
 </table>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+<script>
+    bsCustomFileInput.init();
+</script>
 @endsection

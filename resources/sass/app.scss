@@ -15,9 +15,12 @@
 
 // Admin Lte
 @import '~admin-lte/dist/css/adminlte.min.css';
-// @import '~admin-lte/dist/css/adminlte.min.css.map';
 
+//Multiple select
 @import '~multiple-select/dist/multiple-select.css';
+
+//Bootstrap File Input
+@import '~bootstrap-fileinput/css/fileinput.min.css';
 
 .navbar-laravel {
     background-color: #fff;

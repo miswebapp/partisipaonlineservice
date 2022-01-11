@@ -9,7 +9,7 @@ use App\Team;
 use App\Position;
 use App\Department;
 use App\Role;
-use App\SystemModule;
+use App\Module;
 use App\Gender;
 use App\Nationality;
 
@@ -72,12 +72,13 @@ class UserController extends Controller
     {
         $genders = Gender::all();
         $nationalities = Nationality::all();
-        $sysmodules = SystemModule::all();
+        $modules = Module::all();
         $positions = Position::all();
         $departments = Department::all();
+        $roles = Role::all();
         $user = UserDetails::with('account','employment','department','position','sysmodules')->where('id',$id)->get();
         // dd($user);
-        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'sysmodules'=>$sysmodules,'genders'=>$genders,'nationalities'=>$nationalities]);
+        return view('admin.users.show')->with(['user'=>$user , 'positions'=>$positions, 'departments'=>$departments , 'modules'=>$modules,'genders'=>$genders,'nationalities'=>$nationalities, 'roles'=>$roles]);
     }
 
     /**

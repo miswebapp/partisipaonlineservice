@@ -6,11 +6,11 @@
 
 import $ from 'jquery';
 window.$ = window.jQuery = $;
+
+
 require('admin-lte');
 require('./bootstrap');
 require('./plugins');
-
-//FRS js plugins
 require('./frs/index');
 
 
@@ -29,16 +29,4 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
-// $('#employee_startdate').datepicker();
-// $('#employee_enddate').datepicker();
-
-
-const app = new Vue({
-    el: '#app',
-});

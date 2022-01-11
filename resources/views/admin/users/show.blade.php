@@ -37,7 +37,7 @@
                     
                     <!-- Modal -->
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserDetailsModal">
+                    <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editUserDetailsModal">
                         Edit Personnel Profile
                     </button>
                     <!-- Modal -->
@@ -174,8 +174,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">Save changes</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
@@ -204,7 +204,7 @@
                         </table>
                         <!-- Modal -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserLoginAccountModal">
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editUserLoginAccountModal">
                             Edit Login Account
                         </button>
                         <!-- Modal -->
@@ -250,8 +250,8 @@
                                             </div>
                                         </div>
                                         
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">Save changes</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -262,7 +262,7 @@
                     @else
                         <!-- Modal -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserLoginAccountModal">
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addUserLoginAccountModal">
                             Setup Login Account
                         </button>
                         <!-- Modal -->
@@ -284,7 +284,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class='input-group' id='name'>
-                                                        <input type='text' class="form-control" name="name"/>
+                                                        <input type='text' class="form-control" name="name" value="{{$user->first()->fullnames}}"/>
                                                         <div class="input-group-append">
                                                             <span class="input-group-text"><i class="fa fa-user-o"></i></span>
                                                         </div>
@@ -317,8 +317,8 @@
                                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">Save changes</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -353,9 +353,8 @@
                         </table>
                         <!-- Modal -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserEmploymentModal">
-                            Edit Employment
-                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addUserEmploymentModal">Edit Employment</button>
+                        <a href="#"><button type="button" class="btn btn-outline-secondary btn-sm">View History</button></a>
                         <!-- Modal -->
                         <div class="modal fade" id="addUserEmploymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -452,8 +451,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -464,7 +463,7 @@
                     @else
                         <!-- Modal -->
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserEmploymentModal">
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addUserEmploymentModal">
                             Setup Employment
                         </button>
                         <!-- Modal -->
@@ -563,8 +562,8 @@
                                             </div>
                                         </div> 
                                                                                 
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save</button>
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm">Save</button>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -587,100 +586,20 @@
                     @endif
                     
                     @if($user->first()->sysmodules()->exists())
-                        <table class="table table-borderless table-sm">
-                            <tr><th>System Modules</th><th>User roles</th></tr>
-                            @foreach($user->first()->sysmodules as $usermodule)
-                                <tr><td>{{$usermodule->name}}</td><td>{{$usermodule->member()->first()->frsteamrole()->first()->name}}</td></tr>
-                            @endforeach
-                        </table>
-                        <!-- Modal -->
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModule">
-                            Edit Module Assignment
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="editUserModule" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's System Module</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.usermodules.store') }}">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <input type="hidden" name="user_id" value={{$user->first()->id}}>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('System Module') }}</label>
-                                            <div class="col-md-6">
-                                                @foreach( $sysmodules as $module )
-                                                <div class="form-check">
-                                                    <input type="checkbox" name="modules[]" value="{{$module->id}}" 
-                                                    @if($user->first()->sysmodules->pluck('id')->contains($module->id)) checked 
-                                                    @endif>
-                                                    <label>{{$module->name}}</label>
-                                                </div>
-                                                @endforeach 
-                                            </div>
-                                        </div>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-                    @else
-                        <!-- Modal -->
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserTeamModal">
-                            Setup Module Assignment
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="addUserTeamModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Setup Personnel's Application Module</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="POST" action="{{ route('admin.usermodules.store') }}">
-                                        @csrf
-                                        <div class="form-group row">
-                                            <input type="hidden" name="user_id" value={{$user->first()->id}}>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Application Module') }}</label>
-                                            <div class="col-md-6">
-                                                @foreach( $sysmodules as $module )
-                                                <div class="form-check">
-                                                    <input type="checkbox" name="modules[]" value="{{$module->id}}" 
-                                                    @if($user->first()->sysmodules->pluck('id')->contains($module->id)) checked 
-                                                    @endif>
-                                                    <label>{{$module->name}}</label>
-                                                </div>
-                                                @endforeach 
-                                            </div>
-                                        </div>
-                                        
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                            </div>
-                        </div>
+                    <table class="table table-borderless table-sm">
+                        <tr><th>System Modules</th><th>Action</th></tr>
+                        @foreach($user->first()->sysmodules as $module)                            
+                            <tr><td>{{ $module->module->name }}</td>
+                                <td>
+                                    @if($module->module->status == 1)
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">Disable</button>
+                                    @else 
+                                        <button type="submit" class="btn btn-outline-success btn-sm">Enable</button>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
                     @endif                
                 </div>
             </div>

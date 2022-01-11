@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     protected $table = 'frs_reports';
-    protected $fillable = ['report_id','user_id','team_id','program_id','activity_id','comment','recommendation','report_date','submitted_date','status'];
+    protected $primaryKey = 'report_id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+    protected $fillable = ['report_id','user_id','team_id','program_id','activity_id','observation','recommendation','report_date','submitted_date','status'];
     
     public function projects()
     {

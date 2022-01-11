@@ -57,7 +57,12 @@ class UserDetails extends Model
 
     public function sysmodules()
     {
-        return $this->belongsToMany(SystemModule::class,'user_modules','user_id','module_id');
+        return $this->hasMany(UserModule::class,'user_id');
+    }
+
+    public function module()
+    {
+        return $this->belongsToMany(Module::class,'user_module_role','user_id','module_id');
     }
     
 }
