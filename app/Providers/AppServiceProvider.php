@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\Interfaces\Frs\FrsReportRepositoryInterface;
-use App\Services\Repositories\Frs\FrsReportRepository;
+use App\Services\Interfaces\Frs\FrsreportreporsitoryInterface as FrsReportRepositoryInterface;
+use App\Services\Repositories\Frs\FrsreportRepository as FrsReportRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
