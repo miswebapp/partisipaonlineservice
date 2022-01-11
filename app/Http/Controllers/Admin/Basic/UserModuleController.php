@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserDetails;
 use App\Models\Frs\Team;
-use App\SystemModule;
+use App\UserModule;
 use App\Module;
 use App\Role;
 
@@ -45,7 +45,7 @@ class UserModuleController extends Controller
 
         if(!empty($users)){
             foreach($users as $user){
-                $sysmodule = new SystemModule();
+                $sysmodule = new UserModule();
                 if( $sysmodule::where('user_id',$user)->where('module_id',$module)->count() == 0){
                     $sysmodule->user()->associate($user);
                     $sysmodule->module()->associate($module);
@@ -67,7 +67,7 @@ class UserModuleController extends Controller
     {
         $users = UserDetails::all();
         $module = Module::find($id);
-        $usermodules = SystemModule::with('user','module')->where('module_id',$id)->get();
+        $usermodules = UserModule::with('user','module')->where('module_id',$id)->get();
         // dd($usermodules);
         // dd($users);
         return view('admin.modules.show',compact('module','users','usermodules'));  
@@ -105,7 +105,7 @@ class UserModuleController extends Controller
     public function destroy(Request $request, $id)
     {
 
-        SystemModule::where('id',$id)->delete();
+        UserModule::where('id',$id)->delete();
         return redirect()->route('admin.usermodules.show',$request->module_id)->with('status','User removed sucsessfully');
 
     }

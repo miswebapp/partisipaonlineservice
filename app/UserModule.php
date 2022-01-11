@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SystemModule extends Model
+class UserModule extends Model
 {
     protected $table="user_module";
     protected $fillable=['user_id','module_id'];

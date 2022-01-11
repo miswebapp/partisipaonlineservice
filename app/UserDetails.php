@@ -57,7 +57,7 @@ class UserDetails extends Model
 
     public function sysmodules()
     {
-        return $this->hasMany(SystemModule::class,'user_id');
+        return $this->hasMany(UserModule::class,'user_id');
     }
 
     public function module()

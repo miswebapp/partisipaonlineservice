@@ -1,7 +1,7 @@
 <?php
-namespace App\Services\Interfaces\Frs;
+namespace App\Services\Interfaces\FRS;
 
-interface FrsReportRepositoryInterface {
+interface FrsreportreporsitoryInterface {
     public function saveNewReport($request);
     public function getAllReports();
 }
