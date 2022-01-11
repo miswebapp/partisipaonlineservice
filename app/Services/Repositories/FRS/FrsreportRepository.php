@@ -87,7 +87,7 @@ class FrsreportRepository implements FrsreportreporsitoryInterface {
     {
         // $account = User::with('details')->find(Auth::id());
         // $user = UserDetails::with('frsteam')->find($account->user_id);
-        return $this->getUser()->frsteam->first()->id;
+        return $this->getUser()->frsteam->first()->user_id;
     }
 
     private function generateReportId($date,$program_id)

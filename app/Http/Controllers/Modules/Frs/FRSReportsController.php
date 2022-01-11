@@ -6,7 +6,7 @@ use App\Services\Interfaces\Frs\FrsreportreporsitoryInterface as FrsReportReposi
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // use App\SystemModule;
-use App\Module;
+use App\SystemModule;
 use App\Models\Frs\Municipal;
 use App\Models\Frs\Program;
 use App\Models\Frs\Activity;
@@ -41,7 +41,7 @@ class FRSReportsController extends Controller
         $projectActivities = ProjectActivity::all();
         $monitorings = MonitoringTool::all();
         $ratings = MonitoringRating::all();
-        $moduleusers = Module::with('member')->where('id',1)->get();
+        $moduleusers = SystemModule::with('member')->where('id',1)->get();
         $weaknesses = Weakness::with('category')->get();
         $maintitle = "Submit field report";
         return view('modules.frs.index',compact('municipals','programs','activities','projects','projectActivities','monitorings','ratings','moduleusers','weaknesses'))->with('maintitle',$maintitle);

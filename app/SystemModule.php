@@ -11,6 +11,6 @@ class SystemModule extends Model
 
     public function member()
     {
-        return $this->belongsToMany(UserDetails::class,'user_modules','module_id','user_id');
+        return $this->belongsToMany(UserDetails::class,'user_module','module_id','user_id');
     }
 }
