@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Frs\TEam;
+use App\Models\Frs\Team;
 
 class FSTTeamTableSeeder extends Seeder
 {

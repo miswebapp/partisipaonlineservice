@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Repositories\Frs;
+namespace App\Services\Repositories\FRS;
 
 use Illuminate\Support\Carbon;
-use App\Services\Interfaces\Frs\FrsReportRepositoryInterface;
+use App\Services\Interfaces\FRS\FrsreportreporsitoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Frs\Program;
@@ -15,7 +15,7 @@ use App\UserDetails;
 use App\User;
 
 
-class FrsReportRepository implements FrsReportRepositoryInterface {
+class FrsreportRepository implements FrsreportreporsitoryInterface {
 
 
     public function saveNewReport($request)
@@ -87,7 +87,7 @@ class FrsReportRepository implements FrsReportRepositoryInterface {
     {
         // $account = User::with('details')->find(Auth::id());
         // $user = UserDetails::with('frsteam')->find($account->user_id);
-        return $this->getUser()->frsteam->first()->id;
+        return $this->getUser()->frsteam->first()->user_id;
     }
 
     private function generateReportId($date,$program_id)

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Module;
 use App\UserDetails;
+use App\UserModule;
 use App\Role;
 
 class ModulesController extends Controller
@@ -84,7 +85,7 @@ class ModulesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $module = SystemModule::where('id',$id)->first();
+        $module = UserModule::where('id',$id)->first();
         $module->alias = $request['alias'];
         $module->name = $request['name'];
         $module->controller_namespace = $request['controller_namespace'];

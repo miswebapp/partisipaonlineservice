@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Modules\Frs;
 
-use App\Services\Interfaces\Frs\FrsReportRepositoryInterface;
+use App\Services\Interfaces\Frs\FrsreportreporsitoryInterface as FrsReportRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use App\SystemModule;
 use App\SystemModule;
 use App\Models\Frs\Municipal;
 use App\Models\Frs\Program;

@@ -63,6 +63,7 @@ class FrsTeamsController extends Controller
         $moduleusers = SystemModule::with('member')->where('id',1)->get();
         $frsteammembers = Team::with('member','memberrole')->where('id',$id)->get(); 
         $maintitle = 'Team '.$frsteammembers->first()->name.'  ('.$frsteammembers->first()->alias.')';
+        
         return view('admin.frs.teams.show',compact('frsteammembers','moduleusers'))->with('maintitle',$maintitle);
     }
 

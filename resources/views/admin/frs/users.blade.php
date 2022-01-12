@@ -69,14 +69,14 @@
               </tr>
             </thead>
             <tbody>
-            @if($frsusers->exists())
-            @if($frsusers->sysmodules)
-            @foreach($frsusers->sysmodules as $frsuser)
+            {{-- @if($frsusers->exists()) --}}
+            {{-- @if($frsusers->sysmodules) --}}
+            @foreach($frsusers as $frsuser)
                 <tr>
-                    <td>{{$frsuser->user->first()->fullnames}}</td>
+                    <td>{{$frsuser->user->fullnames}}</td>
                     <td>
-                        @if(!empty($frsuser->user->first()->employment))
-                        {{$frsuser->user->first()->employment->employee_email}}
+                        @if(!empty($frsuser->user->employment))
+                        {{$frsuser->user->employment->employee_email}}
                         @endif
                     </td>
                     {{-- <td>{{$frsuser->frsteam()->first() == null ? '' : $frsuser->frsteam()->first()->alias}}</td> --}}
@@ -99,8 +99,8 @@
                     </td>
                 </tr>
             @endforeach
-            @endif
-            @endif
+            {{-- @endif --}}
+            {{-- @endif --}}
             </tbody>
         </table>
 

@@ -6,27 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SystemModule extends Model
 {
-    protected $table="user_module";
-    protected $fillable=['user_id','module_id'];
+    protected $table="sys_modules";
+    protected $fillable=['name','alias','controller_namespace','model_namespace','view_namespace','route_name','description'];
 
-    public function user()
+    public function member()
     {
-        return $this->belongsTo(UserDetails::class,'user_id');
-    }
-    public function module()
-    {
-        return $this->belongsTo(Module::class,'module_id');
-    }
-
-    public function isExisted($module_id , $user_id)
-    {
-            $user = App\UserDetails::find($user_id);
-            $module = App\Module::find($module_id);
-            //get $user's roles. This ill return an array of role objects that are belong to $user
-            $userRusermodules= $user->module;
-            //check whether $role is in that array
-            if(in_array($role, $userRoles)){
-            //do something
-            }
+        return $this->belongsToMany(UserDetails::class,'user_module','module_id','user_id');
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Frs\FrsUser;
 use App\UserDetails;
 use App\Module;
+use App\UserModule;
 
 class FrsUsersController extends Controller
 {
@@ -19,8 +20,8 @@ class FrsUsersController extends Controller
     {
         $allusers = UserDetails::all();
         $maintitle="Reporting User Management";
-        $frsusers = UserDetails::with('sysmodules','employment')->where();
-        dd($frsusers);
+        $frsusers = UserModule::with('user','module')->where('module_id',1)->get();
+        // dd($frsusers);
         return view('admin.frs.users', compact('frsusers','allusers'))->with('maintitle',$maintitle);
     }
 
