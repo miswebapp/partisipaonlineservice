@@ -111,12 +111,11 @@
             <tbody>
                
             @foreach($frsteammembers->first()->member as $user)
-                {{-- {{dd($frsteammembers->first()->memberrole())}} --}}
                 <tr>
                     <td>{{$user->fullnames}}</td>
                     <td>{{$user->email}}</td>
                     
-                    {{-- <td> {{dd($user->first()->frsteamrole()->first())}}</td>  --}}
+                    <td> {{$user->frsteamrole->first()->name}}</td> 
                     
                     <td>
                         @can('delete-user')

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\UserDetails;
 use App\SystemModule;
-use App\Role;
+use App\Models\Frs\FrsRole as Role;
 use App\Models\Frs\Team;
 
 class FrsTeamsController extends Controller
