@@ -17,7 +17,7 @@ class CreateFrsUserTeamRolesTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('team_id')->unsigned();
-            $table->integer('role_id')->unsigned()->default(5);
+            $table->integer('role_id')->unsigned()->default(1);
             $table->timestamps();
         });
     }
