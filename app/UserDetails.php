@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Frs\Team;
-use App\Role;
+use App\Models\Frs\FrsRole as Role;
 class UserDetails extends Model
 {
     protected $fillable = [

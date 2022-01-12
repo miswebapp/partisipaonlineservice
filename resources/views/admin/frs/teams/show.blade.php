@@ -116,7 +116,7 @@
                     <td>{{$frsuser->fullnames}}</td>
                     <td>{{$frsuser->email}}</td>
                     
-                    <td> {{--{{dd($frsuser->frsteamrole)}} --}}</td> 
+                    <td> {{$frsuser->frsteamrole->first()->name}}</td> 
                     
                     <td>
                         @can('delete-user')
