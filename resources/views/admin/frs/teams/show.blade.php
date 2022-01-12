@@ -110,21 +110,21 @@
             </thead>
             <tbody>
                
-            @foreach($frsteammembers->first()->member as $frsuser)
+            @foreach($frsteammembers->first()->member as $user)
                 {{-- {{dd($frsteammembers->first()->memberrole())}} --}}
                 <tr>
-                    <td>{{$frsuser->fullnames}}</td>
-                    <td>{{$frsuser->email}}</td>
+                    <td>{{$user->fullnames}}</td>
+                    <td>{{$user->email}}</td>
                     
-                    <td> {{$frsuser->frsteamrole->first()->name}}</td> 
+                    {{-- <td> {{dd($user->first()->frsteamrole()->first())}}</td>  --}}
                     
                     <td>
                         @can('delete-user')
-                        {{-- <a href="{{route('admin.usermodules.destroy',$frsuser->id)}}"><button type="button" class="btn btn-outline-danger btn-sm">Remove</button></a> --}}
+                        {{-- <a href="{{route('admin.usermodules.destroy',$user->id)}}"><button type="button" class="btn btn-outline-danger btn-sm">Remove</button></a> --}}
                         <form method="POST" action="{{route('admin.frs.userteam.destroy',$frsteammembers->first()->id)}}">
                             @csrf
                             {{ method_field('DELETE') }}
-                            <input type="hidden" name="user_id" value="{{$frsuser->id}}">
+                            <input type="hidden" name="user_id" value="{{$user->id}}">
                             <button type="submit" class="btn btn-outline-danger btn-sm">Remove</button>
                         </form>
                         {{-- <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?"></a> --}}
