@@ -79,8 +79,9 @@
                         {{$frsuser->user->employment->employee_email}}
                         @endif
                     </td>
-                    {{-- <td>{{$frsuser->frsteam()->first() == null ? '' : $frsuser->frsteam()->first()->alias}}</td> --}}
-                    {{-- <td>{{$frsuser->frsteamrole()->first() == null ? '' : $frsuser->frsteamrole()->first()->name}}</td> --}}
+                    {{-- <td>{{ $frsuser->user->frsteam}}</td> --}}
+                    <td>{{$frsuser->user->frsteam->isEmpty() ? '' : $frsuser->user->frsteam->first()->alias}}</td>
+                    <td>{{$frsuser->user->frsteamrole->isEmpty() ? '' : $frsuser->user->frsteamrole->first()->name}}</td>
                     <td>
                         {{-- @can('edit-user')
                         <a href="#"><button type="button" class="btn btn-outline-primary btn-sm">Update details</button></a>
