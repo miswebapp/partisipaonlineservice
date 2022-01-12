@@ -22,7 +22,7 @@ class Team extends Model
 
     public function hasPreviousCoordinator()
     {
-        return $this->memberrole()->where('role_id',3)->exists();
+        return $this->memberrole()->where('role_id',2)->exists();
     }
 
     public function hasMember($user_id)
@@ -32,6 +32,6 @@ class Team extends Model
 
     public function getCoordinatorMemberId()
     {
-        return $this->member()->where('role_id',3);
+        return $this->member()->where('role_id',2);
     }
 }

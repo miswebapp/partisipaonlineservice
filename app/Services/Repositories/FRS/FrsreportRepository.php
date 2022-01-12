@@ -2,13 +2,17 @@
 
 namespace App\Services\Repositories\FRS;
 
+use App\app\Models\Frs\ReportMonitoringToolRating;
 use Illuminate\Support\Carbon;
 use App\Services\Interfaces\FRS\FrsreportreporsitoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Frs\Program;
 use App\Models\Frs\Report;
+use App\Models\Frs\ReportLocation;
+use App\Models\Frs\ReportMonitoringToolRating as FrsReportMonitoringToolRating;
 use App\Models\Frs\ReportPhoto;
+use App\Models\Frs\ReportProjectActivity;
 use App\Models\Frs\Team;
 use App\Models\Frs\Weakness;
 use App\UserDetails;
@@ -42,15 +46,25 @@ class FrsreportRepository implements FrsreportreporsitoryInterface {
         $report->save();
 
         //Project , project activity , monitoring , rating
-        $project_id = $request->project_id;
-        $project_activity_id = $request->project_activity_id;
-        $monitoring_tool_id = $request->monitoring_tool_id;
-        $monitoring_rating_id = $request->monitoring_rating_id;
+        $project_activity = new ReportProjectActivity();
+        $project_activity->report_id = $report_id;
+        $project_activity->project_id = $request->project_id;
+        $project_activity->project_activity_id = $request->project_activity_id;
+        $project_activity->save();
 
+        $monitoring_rating = new FrsReportMonitoringToolRating();
+        $monitoring_rating->report_id = $report_id;
+        $monitoring_rating->monitoring_id = $request->monitoring_tool_id;
+        $monitoring_rating->rating_id = $request->monitoring_rating_id;
+        $monitoring_rating->save();
+        
         //Location
-        $municipal_id = $request->municipal_id;
-        $posto_id = $request->posto_id;
-        $suco_id = $request->suco_id;
+        $location = new ReportLocation();
+        $location->report_id = $report_id;
+        $location->municipal_id = $request->municipal_id;
+        $location->posto_id = $request->posto_id;
+        $location->suco_id = $request->suco_id;
+        $location->save();
 
         //Users
         $users = $request->users;
@@ -87,7 +101,7 @@ class FrsreportRepository implements FrsreportreporsitoryInterface {
     {
         // $account = User::with('details')->find(Auth::id());
         // $user = UserDetails::with('frsteam')->find($account->user_id);
-        return $this->getUser()->frsteam->first()->user_id;
+        return $this->getUser()->frsteam->first()->id;
     }
 
     private function generateReportId($date,$program_id)

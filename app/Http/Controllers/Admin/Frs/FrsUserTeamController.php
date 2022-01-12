@@ -54,7 +54,7 @@ class FrsUserTeamController extends Controller
                 }
 
                 $team->member()->detach($request->user);
-                $team->member()->attach($request->user,['role_id' => 3]);
+                $team->member()->attach($request->user,['role_id' => 2]);
                 return redirect()->route('admin.frs.teams.show',$request->team_id)->with('status_success','Team coordinator added successfully');
         }
         
