@@ -157,7 +157,7 @@
                     </div>
                     <div class="row">    
                         <label class="col-md-2 col-form-label text-md-right">{{ __('Staff') }}</label>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <div class='input-group'>
                                     <select class="multiitems" name="users[]" multiple>
