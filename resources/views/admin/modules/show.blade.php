@@ -32,7 +32,7 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <div class='input-group'>
-                                                                <select class="multiitems" name="users[]" multiple>
+                                                                <select class="multiitems" name="users[]" multiple style="width:300px">
                                                                     <option value="0" disabled>-- Select User --</option>
                                                                     @foreach($users as $user)
                                                                         <option value="{{$user->id}}">{{$user->fullnames}}</option>

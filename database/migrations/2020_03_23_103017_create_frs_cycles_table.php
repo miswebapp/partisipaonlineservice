@@ -16,6 +16,7 @@ class CreateFrsCyclesTable extends Migration
         Schema::create('frs_cycles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description');
             $table->timestamps();
         });
     }

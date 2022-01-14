@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cycle extends Model
 {
-    protected $fillable = ['name'];
-    protected $table = ['frs_cycles'];
+    protected $fillable = ['name','description'];
+    protected $table = "frs_cycles";
 }

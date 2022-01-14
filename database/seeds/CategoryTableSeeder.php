@@ -11,10 +11,11 @@ class CategoryTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Social']);
-        Category::create(['name' => 'Finance']);
-        Category::create(['name' => 'Technical']);
-        Category::create(['name' => 'Water']);
-        Category::create(['name' => 'Others']);
+        Category::create(['name' => 'Social','description'=>'']);
+        Category::create(['name' => 'Finance','description'=>'']);
+        Category::create(['name' => 'Technical','description'=>'']);
+        Category::create(['name' => 'Water','description'=>'']);
+        Category::create(['name' => 'Decentralization','description'=>'']);
+        Category::create(['name' => 'Others','description'=>'']);
     }
 }

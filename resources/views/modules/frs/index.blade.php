@@ -160,7 +160,7 @@
                         <div class="col-md-9">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <select class="multiitems" name="users[]" multiple>
+                                    <select class="multiitems" name="users[]" multiple style="width:350px">
                                         <option value="0" disabled>-- Select Partisipa Staff --</option>
                                         @foreach($moduleusers->first()->member as $user)
                                             <option value="{{$user->id}}">{{$user->fullnames}}</option>
@@ -172,10 +172,10 @@
                     </div>   
                     <div class="row">    
                         <label class="col-md-2 col-form-label text-md-right">{{ __('Weakness') }}</label>
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="form-group">
                                 <div class='input-group'>
-                                    <select class="multiitems" name="wekanesses[]" multiple>
+                                    <select class="multiitems" name="wekanesses[]" multiple style="width:350px" >
                                         <option value="0" disabled>-- Select Weakness Observed --</option>
                                         @foreach($weaknesses as $wekaness)
                                             <option value="{{$wekaness->id}}">{{$wekaness->name}}</option>

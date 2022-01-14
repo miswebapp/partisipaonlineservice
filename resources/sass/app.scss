@@ -17,7 +17,8 @@
 @import '~admin-lte/dist/css/adminlte.min.css';
 
 //Multiple select
-@import '~multiple-select/dist/multiple-select.css';
+@import '~multiple-select/dist/multiple-select.min.css';
+// @import '~select2/dist/css/select2.css';
 
 //Bootstrap File Input
 @import '~bootstrap-fileinput/css/fileinput.min.css';
@@ -25,8 +26,8 @@
 .navbar-laravel {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  }
+}
 
-  .modal-dialog{
-    max-width:600px
-  }
+.modal-dialog{
+    max-width:750px
+}

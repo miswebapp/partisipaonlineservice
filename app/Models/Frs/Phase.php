@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Phase extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','description'];
     protected $table = 'frs_phases';
 }

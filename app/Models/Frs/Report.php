@@ -52,4 +52,12 @@ class Report extends Model
     {
         return $this->belongsToMany(Weakness::class,'frs_report_weaknesses','report_id','weakness_id');
     }
+    public function cycle()
+    {
+        return $this->belongsToMany(Cycle::class,'frs_report_category_cycle_phases','report_id','cycle_id');
+    }
+    public function phase()
+    {
+        return $this->belongsToMany(Phase::class,'frs_report_category_cycle_phases','report_id','phase_id');
+    }
 }
