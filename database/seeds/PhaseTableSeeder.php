@@ -14,7 +14,7 @@ class PhaseTableSeeder extends Seeder
     {
         Phase::truncate();
         Phase::create(['name'=>'Phase 1','description'=>'Phased suco implementation']);
-        Phase::create(['name'=>'Phase 1','description'=>'Phased suco implementation']);
-        Phase::create(['name'=>'Phase 1','description'=>'Phased suco implementation']);
+        Phase::create(['name'=>'Phase 2','description'=>'Phased suco implementation']);
+        Phase::create(['name'=>'Phase 3','description'=>'Phased suco implementation']);
     }
 }

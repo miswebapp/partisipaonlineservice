@@ -23,4 +23,8 @@ class Counterpart extends Model
     {
         return $this->belongsTo(Municipal::class);
     }
+    public function capacity()
+    {
+        return $this->belongsToMany(Capacity::class,'counterpart_id','capacity_id');
+    }
 }

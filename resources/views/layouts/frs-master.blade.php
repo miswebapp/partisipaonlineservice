@@ -9,13 +9,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Field Reporting System</title>
+  <title>PARTISIPA - Field Reporting System</title>
 
   <script src="{{ asset('js/app.js') }}"></script>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -174,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <p>Home<i class="right fa fa-home"></i></p>
             </a>
           </li>  
-          <li class="nav-item has-treeview menu-open">
+          <li class="nav-item has-treeview menu-close">
             <a href="#" class="nav-link">
               {{-- <i class="nav-icon fa fa-tachometer-alt"></i> --}}
               <p>Management<i class="right fa fa-angle-left"></i></p>
@@ -207,10 +208,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <a href="{{ route('admin.frs.projects.index') }}" class="nav-link">
                   <i class="fa fa-circle nav-icon"></i>
-                  <p>Projects</p>
+                  <p>Projects & Activities</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.frs.category.cycle.phase.index') }}" class="nav-link">
+                  <i class="fa fa-circle nav-icon"></i>
+                  <p>Category,Cycle & Phase</p>
+                </a>
+              </li>
+              <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link">
                   {{-- <i class="fa fa-circle nav-icon"></i> --}}
                   <p>Weaknesses<i class="right fa fa-angle-left"></i></p>
@@ -230,7 +237,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </li>
                   </ul>
               </li> 
-              <li class="nav-item has-treeview">
+              <li class="nav-item has-treeview menu-open">
                 <a href="#" class="nav-link">
                   {{-- <i class="fa fa-circle nav-icon"></i> --}}
                   <p>Monitoring<i class="right fa fa-angle-left"></i></p>
@@ -250,7 +257,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       </li>
                   </ul>
               </li> 
-              <li class="nav-item has-treeview">
+              <li class="nav-item has-treeview menu-open">
                   <a href="#" class="nav-link">
                     {{-- <i class="fa fa-circle nav-icon"></i> --}}
                     <p>Counterparts<i class="right fa fa-angle-left"></i></p>
@@ -370,7 +377,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="{{route('home')}}>Partnership to Strengthen Village Development and Municipal Administration</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 <a href="{{route('home')}}">Partnership to Strengthen Village Development and Municipal Administration</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

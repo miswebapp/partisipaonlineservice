@@ -40,5 +40,8 @@ class DatabaseSeeder extends Seeder
         $this->call(FRSTeamRoleTableSeeder::class);  
         $this->call(PhaseTableSeeder::class); 
         $this->call(CycleTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(CapacityTableSeeder::class);
+        
     }
 }

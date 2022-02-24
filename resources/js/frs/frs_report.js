@@ -38,13 +38,37 @@ $(document).ready(function(){
                     _token:_token,
                 },
                 success:function(responseData){
-                    $('#'+dependent).empty();
-                    $('#'+dependent).append(responseData);
+                    if(dependent == 'posto'){
+                        var counterpartStaff = $('#counterpart');
+                        $('#'+dependent).empty();
+                        $('#counterpart').empty();
+                        
+                            $obj = jQuery.parseJSON(responseData);
+                            $posto = $obj[0];
+                            $data = $obj[1]
+                            $('#'+dependent).append($posto);
+                            $('#counterpart_capacity').append($data);
+
+                    }else {
+                        $('#'+dependent).empty();
+                        $('#'+dependent).append(responseData);
+                    }
+                    
                 }
             })
         }
     });
     $('#report_date').datepicker();
+    $('#counterpart_capacity').on('change','input[class=sel_capacity]',function(e){
+        e.preventDefault();
+        if(this.checked) {
+            $('#'+this.id+'_sel').removeAttr('disabled');
+			$('#'+this.id+'_sel').focus();
+        }else{
+            $('#'+this.id+'_sel').prop('disabled',true);
+            $('#'+this.id+'_sel').val("").selected();
+        }
+    });
 
     
 });

@@ -37,7 +37,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <div class='input-group'>
-                                            <select class="multiitems" name="users[]" multiple>
+                                            <select class="multiitems" name="users[]" multiple style="width: 350px;">
                                                 <option value="0" disabled>-- Select Available Staff --</option>
                                                 @foreach($moduleusers->first()->member as $user)
                                                     @if(!$user->frsteam()->exists())
@@ -79,7 +79,7 @@
                             <input type="hidden" name="team_id" value="{{ $frsteammembers->first()->id }}">
                             <input type="hidden" name="actions" value="assign_team_coordinator">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Available Users</label>
                                             <select class="form-control" heigh="50px" name="user">

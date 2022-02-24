@@ -1,6 +1,6 @@
 @extends('layouts.frs-master')
 @section('content')
-<div class="col-lg-8">
+<div class="col-lg-6">
     @if (session('status'))
         <div class="alert alert-success" role="alert">
              {{ session('status') }}
@@ -43,8 +43,7 @@
                         <div class="col-md-8">
                             <div class="form-group">
                                 <div class='input-group' id='description'>
-                                    <textarea rows="3" class="form-control" name="description">
-                                    </textarea>
+                                    <textarea rows="3" class="form-control" name="description"></textarea>
                                     <div class="input-group-append">
                                         <span class="input-group-text"><i class="fa fa-compose"></i></span>
                                     </div>
@@ -61,8 +60,8 @@
         </div>
         </div>
     </div>    
-@if(!empty($projects))
-<table class="table table-bordered table-sm">
+    @if(!empty($projects))
+    <table class="table table-bordered table-sm">
     <thead class="thead-light">
       <tr>
         <th scope="col">Project Name</th>
@@ -116,9 +115,7 @@
                                         <div class="form-group">
                                             <div class='input-group' id='description_{{$project->id}}'>
                                                 
-                                                <textarea rows="3" class="form-control" name="description">
-                                                    {{$project->description}}
-                                                </textarea>
+                                                <textarea rows="3" class="form-control" name="description">{{$project->description}}</textarea>
                                                 <div class="input-group-append">
                                                     <span class="input-group-text"><i class="fa fa-compose"></i></span>
                                                 </div>
@@ -145,7 +142,152 @@
         </tr>
         @endforeach
     </tbody>
-</table>
-@endif
+    </table>
+    @endif
+</div>
+
+<div class="col-lg-5">
+    @if (session('status2'))
+        <div class="alert alert-success" role="alert">
+             {{ session('status2') }}
+        </div>
+    @endif
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addNewProjectActivity">
+        Add Project Activity
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="addNewProjectActivity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add new project activity to Field Report</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <form method="POST" action="{{ route('admin.frs.project.activities.store')}}">
+                    @csrf
+                    <div class="row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Activity Name') }}</label>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class='input-group' id='name'>
+                                    <input type='text' class="form-control" name="name"/>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class='input-group' id='description'>
+                                    <textarea rows="3" class="form-control" name="description"></textarea>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-compose"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+        </div>
+    </div>    
+    @if(!empty($projects))
+    <table class="table table-bordered table-sm">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Project Activities Name</th>
+        <th scope="col">Descriptions</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        @foreach($projectActivities as $projAct)
+        <tr>
+        <td>{{$projAct->name}}</td>
+        <td>{{$projAct->description}}</td>
+            <td>
+                @can('edit-user')
+                <!-- Modal -->
+                <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#editProjectActivity{{$projAct->id}}">
+                    Edit
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="editProjectActivity{{$projAct->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Project Activity</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <form method="POST" action="{{ route('admin.frs.project.activities.update',$projAct->id)}}">
+                            {{method_field('PUT')}}
+                            @csrf
+                                <div class="row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Project Activity Name') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class='input-group' id='name_{{$projAct->id}}'>
+                                                <input type='text' class="form-control" name="name" value="{{$projAct->name}}"/>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descriptions') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <div class='input-group' id='description_{{$projAct->id}}'>
+                                                <textarea rows="3" class="form-control" name="description">{{$projAct->description}}</textarea>
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-compose"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                    </div>
+                </div>    
+                @endcan
+                @can('edit-user')
+                @endcan
+                @can('delete-user')
+                <a href="#"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a>
+                @endcan
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+    </table>
+    @endif
 </div>
 @endsection

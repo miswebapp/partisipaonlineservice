@@ -36,7 +36,6 @@ class FrsUserTeamController extends Controller
      */
     public function store(Request $request)
     {
-        
         $team = Team::find($request->team_id);       
         if($request->actions == "assign_team_member"){
             if(!$team->hasMember($request->users)){

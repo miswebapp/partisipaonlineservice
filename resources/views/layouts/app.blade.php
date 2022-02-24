@@ -7,7 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'POS') }}</title>
+    {{-- <title>{{ config('app.name', 'PARTISIPA_Management_Information_System') }}</title> --}}
+    <title>PARTISIPA Management Information System</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

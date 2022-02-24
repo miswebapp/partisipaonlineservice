@@ -16,7 +16,7 @@ class CreateFrsReportPartisipaStaffsTable extends Migration
         Schema::create('frs_report_partisipa_staffs', function (Blueprint $table) {
             $table->id();
             $table->string('report_id');
-            $table->integer('users_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

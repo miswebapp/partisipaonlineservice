@@ -18,7 +18,8 @@
 
 //Multiple select
 @import '~multiple-select/dist/multiple-select.min.css';
-// @import '~select2/dist/css/select2.css';
+@import '~select2/dist/css/select2.min.css';
+// @import '~@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css';
 
 //Bootstrap File Input
 @import '~bootstrap-fileinput/css/fileinput.min.css';
@@ -29,5 +30,57 @@
 }
 
 .modal-dialog{
-    max-width:750px
+    max-width:800px;
 }
+
+select {
+    width: 100%;
+}
+
+.card-title {
+    margin-bottom: 0rem;
+    font-size: .9rem;
+}
+.capacity_td{
+    padding: 5px;
+    margin:0;
+}
+
+.sel_capacity{
+    // margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+}
+.header-card{
+    display: flex;
+    justify-content: space-between;
+ 
+    // position: relative;
+}
+.error{
+    // font-size: .9rem;
+    color:red;
+    border-color: crimson;
+    font-weight: lighter;
+    font-style:normal;
+}
+
+// .span.error {
+//     float: none; 
+//     color: red; 
+//     padding-left: .3em;
+//     vertical-align: top; 
+//     display: block;
+// }
+// .card-title-custom{
+//     float: left;
+// }
+// .card-tool-custom{
+//     float:right;
+// }
+// .card-header {
+//     padding: 0.3rem;
+//     background-color:rgba(0, 0, 0, 0);
+// }
+// .card-body {
+//     padding: 0.3rem;
+// }

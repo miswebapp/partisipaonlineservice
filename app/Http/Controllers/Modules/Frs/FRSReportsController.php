@@ -10,13 +10,16 @@ use App\SystemModule;
 use App\Models\Frs\Municipal;
 use App\Models\Frs\Program;
 use App\Models\Frs\Activity;
+use App\Models\Frs\Category;
+use App\Models\Frs\Cycle;
 use App\Models\Frs\Project;
 use App\Models\Frs\ProjectActivity;
 use App\Models\Frs\MonitoringTool;
 use App\Models\Frs\MonitoringRating;
+use App\Models\Frs\Phase;
+use App\Models\Frs\Team;
 use App\Models\Frs\Weakness;
-
-
+use App\UserDetails;
 
 class FRSReportsController extends Controller
 {
@@ -34,6 +37,8 @@ class FRSReportsController extends Controller
      */
     public function index()
     {
+        $mydetails = UserDetails::with('frsteam')->where('id',auth()->user()->user_id)->get();
+        $myTeamId = $mydetails->first()->frsteam->first()->id;
         $municipals = Municipal::all();
         $programs = Program::all();
         $activities = Activity::all();
@@ -41,10 +46,15 @@ class FRSReportsController extends Controller
         $projectActivities = ProjectActivity::all();
         $monitorings = MonitoringTool::all();
         $ratings = MonitoringRating::all();
-        $moduleusers = SystemModule::with('member')->where('id',1)->get();
-        $weaknesses = Weakness::with('category')->get();
+        // $moduleusers = SystemModule::with('member')->where('id',1)->get();
+        $moduleusers = Team::with('member')->where('id', $myTeamId)->get();
+        $weaknesses = Weakness::all();
+        $categories = Category::all();
+        $cycles = Cycle::all();
+        $phases = Phase::all();
         $maintitle = "Submit field report";
-        return view('modules.frs.index',compact('municipals','programs','activities','projects','projectActivities','monitorings','ratings','moduleusers','weaknesses'))->with('maintitle',$maintitle);
+
+        return view('modules.frs.index',compact('municipals','programs','activities','projects','projectActivities','monitorings','ratings','moduleusers','weaknesses','categories','cycles','phases'))->with('maintitle',$maintitle);
     }
 
     /**

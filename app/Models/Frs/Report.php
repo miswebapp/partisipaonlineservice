@@ -3,7 +3,7 @@
 namespace App\Models\Frs;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\UserDetails;
 class Report extends Model
 {
     protected $table = 'frs_reports';
@@ -60,4 +60,12 @@ class Report extends Model
     {
         return $this->belongsToMany(Phase::class,'frs_report_category_cycle_phases','report_id','phase_id');
     }
+    public function counterpartsCapacity()
+    {
+        return $this->belongsToMany(Capacity::class,'frs_report_counterparts','report_id','capacity_id');
+    }
+
+
+
+    
 }

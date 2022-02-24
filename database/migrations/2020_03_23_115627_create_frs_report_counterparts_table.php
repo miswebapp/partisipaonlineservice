@@ -17,7 +17,8 @@ class CreateFrsReportCounterpartsTable extends Migration
             $table->id();
             $table->string('report_id');
             $table->integer('counterpart_id')->unsigned();
-            $table->integer('capacity_id')->unsigned();
+            $table->integer('position_id')->unsigned();
+            $table->integer('capacity_id')->unsigned()->default(0);
             $table->timestamps();
         });
     }

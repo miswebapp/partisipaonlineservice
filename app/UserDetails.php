@@ -64,5 +64,13 @@ class UserDetails extends Model
     {
         return $this->belongsToMany(Module::class,'user_module_role','user_id','module_id');
     }
+    public function partisipastaffs()
+    {
+        return $this->belongsToMany(UserDetails::class,'frs_report_partisipa_staffs','report_id','user_id');
+    }   
+
+    public function getTeamId(){
+        return $this->team();
+    }
     
 }

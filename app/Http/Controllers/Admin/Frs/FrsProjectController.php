@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Frs;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Frs\Project;
+use App\Models\Frs\ProjectActivity;
 
 class FrsProjectController extends Controller
 {
@@ -16,8 +17,9 @@ class FrsProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $maintitle="Projects Management";
-        return view('admin.frs.projects', compact('projects'))->with('maintitle',$maintitle);
+        $projectActivities = ProjectActivity::all();
+        $maintitle="Manage Projects and Project Activities";
+        return view('admin.frs.projects', compact('projects','projectActivities'))->with('maintitle',$maintitle);
     }
 
     /**
